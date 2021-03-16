@@ -1,0 +1,17 @@
+.Logo {
+  padding: 0 10px;
+  text-align: center;
+}
+
+.Logo a {
+  color: #000000;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/*.Logo a:not(href) {*/
+/*  color: red;*/
+/*}*/

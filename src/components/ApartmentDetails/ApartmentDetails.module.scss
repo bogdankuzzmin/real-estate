@@ -1,0 +1,50 @@
+.ApartmentDetails {
+}
+
+.Wrapper {
+  border: 1px solid crimson;
+}
+
+.Columns {
+  display: flex;
+
+  margin-bottom: 20px;
+}
+
+.Gallery {
+  margin-right: 20px;
+  max-width: 520px;
+}
+
+.Gallery img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.MainPicture {
+  margin-bottom: 15px;
+}
+
+.PreviewPictures {
+
+}
+
+.ApartmentInfo {
+  width: 100%;
+}
+
+.ButtonsWrapper {
+  display: flex;
+  justify-content: space-between;
+
+  //button {
+  //  margin-top: 0;
+  //  margin-right: 15px;
+  //  width: 220px;
+  //}
+  //
+  //button:last-child {
+  //  margin-right: 0;
+  //}
+}

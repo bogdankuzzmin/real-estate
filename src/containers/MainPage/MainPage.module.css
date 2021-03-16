@@ -1,0 +1,16 @@
+.MainPage {
+  padding-top: 20px;
+  margin-top: -40px;
+  min-height: 600px;
+  background-image: url('../../assets/images/main-page-bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.MainPage p {
+  margin: 20px auto;
+  width: 600px;
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+}

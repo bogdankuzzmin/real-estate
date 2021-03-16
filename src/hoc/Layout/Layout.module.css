@@ -1,0 +1,18 @@
+.Main {
+  padding: 40px 0;
+  background-color: #f5f6f9;
+}
+
+.Footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1px;
+  padding-bottom: 1px;
+
+  min-height: 300px;
+
+  color: #ffffff;
+  font-size: 20px;
+  background-color: black;
+}
