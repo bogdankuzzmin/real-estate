@@ -1,3 +1,6 @@
+@import 'src/scss/normalize';
+@import 'src/scss/font.scss';
+
 html {
   scroll-behavior: smooth;
 }
@@ -5,9 +8,9 @@ html {
 body {
   margin: 0;
 
-  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-family: $family;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: $weight-normal;
 }
 
 img {

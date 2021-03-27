@@ -35,35 +35,10 @@ $hover-cover: darken($main-color, 20%);
   }
 }
 
-.Favorite {
-  background-color: #33ba39;
-  border-color: #33ba39;
+.MoreApartmentsButton {
+  display: flex;
+  justify-content: center;
 
-  &:hover {
-    background-color: #338d38;
-  }
-
-  &:active, &:focus {
-    background-color: #338d38;
-  }
+  margin: 10px auto;
+  width: 200px;
 }
-
-.Icon {
-  padding-left: 50px;
-
-  &:before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    //margin-top: -10px;
-    left: 10px;
-
-    width: 20px;
-    height: 20px;
-
-    background-repeat: no-repeat;
-
-
-  }
-}
-

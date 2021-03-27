@@ -1,0 +1,40 @@
+.FavoriteButton {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 20;
+
+  padding: 3px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  svg {
+    transition: all 0.2s ease-in-out;
+
+    path {
+     stroke-width: 2px;
+     transition: all 0.2s ease-in-out;
+    }
+
+    &:hover path {
+      stroke: red;
+    }
+  }
+}
+
+.FavoriteButtonActive {
+  svg {
+    fill: red;
+
+    path {
+      stroke-width: 1px;
+      stroke: black;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@import 'src/scss/palette';
+
+.NavigationItem {
+  margin-right: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.Link {
+  color: $main-link-color;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    color: $hover-link-color;
+  }
+}
+
+.Active {
+  color: $active-link-color;
+
+  &:hover,
+  &:focus {
+    color: $active-link-color;
+    cursor: default;
+  }
+}

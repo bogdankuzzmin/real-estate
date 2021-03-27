@@ -1,45 +1,48 @@
-import React, {useState, useEffect, useMemo} from 'react';
+import React, {useState, useEffect} from 'react';
 import {withRouter} from 'react-router';
+import {connect} from 'react-redux';
+import {fetchApartments, increaseApartmentCount} from '../../store/actions/apartment';
 
-import classes from './BuyApartment.module.css';
+import classes from './BuyApartment.module.scss';
 
-import ListApartment from '../../components/ListApartments';
+
 import WrapperLayout from '../../hoc/WrapperLayout';
+import Spinner from '../../components/UI/Spinner';
+import Button from '../../components/UI/Button';
+import ListApartment from '../../components/ListApartments';
 
-const APARTMENT_COUNT_PER_STEP = 6;
 
 const BuyApartment = (props) => {
-  const [apartments, setApartments] = useState(null);
-  const [apartmentsLength, setApartmentsLength] = useState(0);
-  const [apartmentsCount, setApartmentsCount] = useState(APARTMENT_COUNT_PER_STEP);
-
   useEffect(() => {
-    setApartments(props.apartments.slice(0, apartmentsCount));
-    setApartmentsLength(props.apartments.length);
-  }, [props.apartments, apartmentsCount]);
+    if (props.apartments.length === 0) {
+      props.fetchApartments();
+    }
+  }, []);
 
   const clickApartmentHandler = (id) => {
     props.history.push(props.location.pathname + '/' + id);
   };
 
   const clickMoreApartmentsHandler = () => {
-    setApartmentsCount((prevCount) => {
-      return prevCount + APARTMENT_COUNT_PER_STEP;
-    });
+    props.increaseApartmentCount();
   };
 
+  if (props.loading) {
+    return <Spinner />;
+  }
+
   let moreApartmentsButton;
-  if (apartmentsLength >= apartmentsCount) {
+  if (props.apartments.length >= props.count) {
     moreApartmentsButton = (
-      <button onClick={clickMoreApartmentsHandler}>More Apartments</button>
+      <Button clicked={clickMoreApartmentsHandler}>More Apartments</Button>
     );
   }
 
   return (
-    <section>
+    <section className={classes.BuyApartment}>
       <h2 className="visually-hidden">Buy Apartments</h2>
       <WrapperLayout>
-        <ListApartment apartments={apartments} clicked={clickApartmentHandler} />
+        <ListApartment apartments={props.apartments.slice(0, props.count)} clicked={clickApartmentHandler} />
 
         {moreApartmentsButton}
       </WrapperLayout>
@@ -47,4 +50,20 @@ const BuyApartment = (props) => {
   );
 };
 
-export default withRouter(BuyApartment);
+const mapStateToProps = (state) => {
+  return {
+    apartments: state.apartments,
+    loading: state.loading,
+    error: state.error,
+    count: state.count,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchApartments: () => dispatch(fetchApartments()),
+    increaseApartmentCount: () => dispatch(increaseApartmentCount()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(BuyApartment));

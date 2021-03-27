@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 
-import classes from './Layout.module.css';
+import classes from './Layout.module.scss';
 
 import Toolbar from '../../components/Navigation/Toolbar';
 

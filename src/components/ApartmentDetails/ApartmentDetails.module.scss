@@ -1,4 +1,5 @@
 .ApartmentDetails {
+  margin-top: 20px;
 }
 
 .Wrapper {
@@ -6,6 +7,8 @@
 }
 
 .Columns {
+  position: relative;
+
   display: flex;
 
   margin-bottom: 20px;

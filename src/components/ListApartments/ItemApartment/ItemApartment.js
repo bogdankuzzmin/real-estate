@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
-
 import {Link} from 'react-router-dom';
-
-import classes from './ItemApartment.module.css';
-import image from '../../../assets/images/elevate-chicago-il-building-photo.jpg';
 import moment from 'moment';
+
+import classes from './ItemApartment.module.scss';
+
+import FavoriteButton from '../../UI/Button/FavoriteButton';
 
 const NAVIGATION_PHOTOS_COUNT = 3;
 
 const ItemApartment = (props) => {
-  const {id, title, street, type, price, date, rooms, square, photos} = props.apartment;
+  const {id, title, street, type, price, date, rooms, square, photos, isFavorite} = props.apartment;
 
   const [imageURL, setImageURL] = useState(photos[0]);
   const [imageMorePhotosClass, setImageMorePhotosClass] = useState([classes.ImageMorePhotos]);
@@ -56,6 +56,8 @@ const ItemApartment = (props) => {
 
   return (
     <li className={classes.ItemApartment}>
+      <FavoriteButton clicked={() => props.clickFavoriteHandler(props.apartment, !isFavorite)} isFavorite={isFavorite} />
+
       <div className={classes.Image}>
         <Link to={`/buy/${id}`}>
           <div className={classes.ImageNavigation}

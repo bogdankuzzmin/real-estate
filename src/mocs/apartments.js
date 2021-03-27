@@ -3,7 +3,7 @@ import {getRandomElement, getRandomArr, getRandomInteger, shuffleArray} from './
 
 const apartments = () => {
   return {
-    id: getRandomInteger(0, 50000),
+    // id: getRandomInteger(0, 50000),
     title: getRandomElement(TITLES),
     street: getRandomElement(STREETS),
     type: getRandomElement(TYPES),
@@ -13,6 +13,7 @@ const apartments = () => {
     rooms: getRandomInteger(1, 4),
     square: getRandomInteger(20, 100),
     photos: shuffleArray(getRandomArr(PHOTOS)),
+    isFavorite: false,
   };
 };
 

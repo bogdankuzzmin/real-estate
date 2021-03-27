@@ -1,10 +1,10 @@
 import React from 'react';
 
 import classes from './Toolbar.module.css';
-import Logo from '../../Logo';
 
-import NavigationItems from '../NavigationItems';
 import WrapperLayout from '../../../hoc/WrapperLayout';
+import NavigationItems from '../NavigationItems';
+import Logo from '../../Logo';
 
 const MENU = ['Buy', 'Sell', 'Rent'];
 const MENU2 = ['Services', 'Contacts', 'Sign in'];

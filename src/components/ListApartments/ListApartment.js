@@ -12,7 +12,7 @@ const listApartment = (props) => {
   }
 
   const apartment = apartments.map(apartment => {
-    return <ItemApartment key={apartment.id} apartment={apartment} clicked={props.clicked} />
+    return <ItemApartment key={apartment.id} apartment={apartment} clicked={props.clicked} clickFavoriteHandler={props.clickFavoriteHandler} />
   });
 
   return (

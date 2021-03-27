@@ -1,7 +1,8 @@
 .MainPage {
-  padding-top: 20px;
-  margin-top: -40px;
+  display: flex;
+
   min-height: 600px;
+
   background-image: url('../../assets/images/main-page-bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
