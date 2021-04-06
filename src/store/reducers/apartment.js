@@ -1,5 +1,13 @@
 import {updateObject} from '../../utils/common';
 import {ActionType} from '../actions/actionTypes';
+import mockData from '../../mocs/apartments';
+
+const data = new Array(20).fill().map(mockData).map((item, index) => {
+  return {
+    ...item,
+    id: index,
+  };
+});
 
 const APARTMENT_COUNT_PER_STEP = 6;
 
@@ -21,8 +29,13 @@ const fetchApartmentsSuccess = (state, action) => {
   });
 };
 
-const fetchApartmentsFail = (state) => {
-  return updateObject(state, {loading: false});
+const fetchApartmentsFail = (state, action) => {
+  console.log(data);
+  return updateObject(state, {
+    loading: false,
+    error: action.payload.message,
+    apartments: data,
+  });
 };
 
 const increaseApartmentCount = (state, action) => {
@@ -31,54 +44,20 @@ const increaseApartmentCount = (state, action) => {
   });
 };
 
-const addApartmentToFavorite = (state, action) => {
-  console.log(action);
-  localStorage.setItem('favorite@' + action.apartment.id, action.payload);
-
-  const index = state.apartments.findIndex((apartmentIndex) => apartmentIndex.id === action.apartment.id);
-
-    const newApartment = {
-      ...action.apartment,
-      isFavorite: !action.apartment.isFavorite,
-    }
-
-    if (index === -1) {
-      throw new Error(`Can't update non-existent product`);
-    }
-
-    const newData = [
-      ...state.apartments.slice(0, index),
-      newApartment,
-      ...state.apartments.slice(index + 1),
-    ];
-
-    return updateObject(state, {apartments: newData});
-
-  // updateApartment(state, {
-  //   ...action.apartment,
-  //   isFavorite: action.payload,
-  // });
-};
-
 const updateApartment = (state, action) => {
-  const index = state.apartments.findIndex((apartmentIndex) => apartmentIndex.id === action.id);
+  const index = state.apartments.findIndex((apartmentIndex) => apartmentIndex.id === action.payload.id);
 
   if (index === -1) {
-    throw new Error(`Can't update non-existent product`);
+    throw new Error(`Can't update non-existent apartment`);
   }
 
-  const test = {
-    ...action,
-    isFavorite: !action.isFavorite,
-  };
-
-  const newApartment = [
-    ...state.apartments(0, index),
-    test,
-    ...state.apartments(index + 1),
+  const newApartments = [
+    ...state.apartments.slice(0, index),
+    action.payload,
+    ...state.apartments.slice(index + 1),
   ];
 
- console.log(newApartment);
+  return updateObject(state, {apartments: newApartments});
 };
 
 
@@ -88,7 +67,6 @@ const apartment = (state = initialState, action) => {
     case ActionType.FETCH_APARTMENTS_SUCCESS: return fetchApartmentsSuccess(state, action);
     case ActionType.FETCH_APARTMENTS_FAIL: return fetchApartmentsFail(state, action);
     case ActionType.INCREASE_APARTMENT_COUNT: return increaseApartmentCount(state, action);
-    case ActionType.ADD_APARTMENT_TO_FAVORITE: return addApartmentToFavorite(state, action);
     case ActionType.UPDATE_APARTMENT: return updateApartment(state, action);
     default: return state;
   }

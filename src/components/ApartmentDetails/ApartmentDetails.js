@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {withRouter} from 'react-router-dom';
-import moment from 'moment';
 import {connect} from 'react-redux';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import SwiperCore, {Navigation, Thumbs, EffectFade} from 'swiper';
+import moment from 'moment';
 
 import classes from './ApartmentDetails.module.scss';
 import 'swiper/swiper.scss';
@@ -12,10 +12,11 @@ import 'swiper/components/effect-fade/effect-fade.scss';
 import 'swiper/components/thumbs/thumbs.scss';
 
 import WrapperLayout from '../../hoc/WrapperLayout';
-import FavoriteButton from '../UI/Button/FavoriteButton';
 import Button from '../UI/Button';
 import Spinner from '../UI/Spinner';
-import {addApartmentToFavorite, fetchApartments} from '../../store/actions/apartment';
+import FavoriteButton from '../UI/Button/FavoriteButton';
+
+import {fetchApartments} from '../../store/actions/apartment';
 
 SwiperCore.use([Navigation, Thumbs, EffectFade]);
 
@@ -34,14 +35,13 @@ const ApartmentDetails = (props) => {
     return <Spinner />;
   }
 
-
   const apartment = props.apartments.find(apartment => apartment.id === Number(props.apartmentId));
-  console.log(apartment);
+  
   if (!apartment) {
     return <p>It seems that apartment was deleted.</p>;
   }
 
-  const {title, street, type, price, rooms, square, date, photos} = apartment;
+  const {title, street, type, price, rooms, square, date, photos, isFavorite} = apartment;
 
   const slider = photos.map((photo, index) => (
     <SwiperSlide key={index}>
@@ -54,7 +54,7 @@ const ApartmentDetails = (props) => {
       <h2 className="visually-hidden">Apartment</h2>
       <WrapperLayout>
         <div className={classes.Columns}>
-          <FavoriteButton clicked={() => props.addApartmentToFavorite(apartment, !apartment.isFavorite)} isFavorite={apartment.isFavorite} />
+          <FavoriteButton apartment={apartment} isFavorite={isFavorite} />
 
           <div className={classes.Gallery}>
             <div className={classes.MainPicture}>
@@ -111,7 +111,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchApartments: () => dispatch(fetchApartments()),
-    addApartmentToFavorite: (apartment, favorite) => dispatch(addApartmentToFavorite(apartment, favorite)),
   };
 };
 

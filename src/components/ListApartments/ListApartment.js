@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import classes from './ListApartment.module.css';
 
@@ -10,9 +11,20 @@ const listApartment = (props) => {
   if (apartments === null) {
     return <p>There are no any apartments</p>;
   }
+  console.log(props.apartmentCount);
+  let animationDelay = 0;
+  const apartment = apartments.map((apartment, index) => {
+    animationDelay++;
 
-  const apartment = apartments.map(apartment => {
-    return <ItemApartment key={apartment.id} apartment={apartment} clicked={props.clicked} clickFavoriteHandler={props.clickFavoriteHandler} />
+    if (index % 6 === 0) {
+      animationDelay = 1;
+    }
+
+    return <ItemApartment 
+              key={apartment.id} 
+              apartment={apartment} 
+              clickFavoriteHandler={props.clickFavoriteHandler} 
+              animationDelay={`0.${animationDelay}s`} />
   });
 
   return (
@@ -22,4 +34,10 @@ const listApartment = (props) => {
   );
 };
 
-export default listApartment;
+const mapStateToProps = (state) => {
+  return {
+    apartmentCount: state.count,
+  };
+};
+
+export default connect(mapStateToProps)(listApartment);

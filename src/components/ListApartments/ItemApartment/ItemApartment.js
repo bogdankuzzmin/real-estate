@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import moment from 'moment';
 
@@ -53,10 +53,10 @@ const ItemApartment = (props) => {
 
     setImageURL(photo);
   };
-
+  console.log(id + ' ' + props.animationDelay);
   return (
-    <li className={classes.ItemApartment}>
-      <FavoriteButton clicked={() => props.clickFavoriteHandler(props.apartment, !isFavorite)} isFavorite={isFavorite} />
+    <li className={classes.ItemApartment} style={{animationDelay: props.animationDelay}}>
+      <FavoriteButton apartment={props.apartment} isFavorite={isFavorite} />
 
       <div className={classes.Image}>
         <Link to={`/buy/${id}`}>
@@ -70,7 +70,7 @@ const ItemApartment = (props) => {
         </Link>
       </div>
       <div className={classes.Content}>
-        <h3><a  onClick={() => props.clicked(id)}>{title}</a></h3>
+        <h3><Link to={`/buy/${id}`}>{title}</Link></h3>
         <div className={classes.Description}>
           <div className={classes.Description__row}>
             <div className={classes.Description__price}>$ {price}</div>

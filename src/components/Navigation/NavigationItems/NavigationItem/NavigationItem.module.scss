@@ -12,18 +12,22 @@
   color: $main-link-color;
   text-decoration: none;
 
-  &:hover,
-  &:active {
+  &:hover {
     color: $hover-link-color;
+  }
+
+  &:active {
+    color: $active-link-color;
   }
 }
 
 .Active {
-  color: $active-link-color;
+  color: $hover-link-color;
 
   &:hover,
   &:focus {
-    color: $active-link-color;
+    color: $hover-link-color;
+    
     cursor: default;
   }
 }

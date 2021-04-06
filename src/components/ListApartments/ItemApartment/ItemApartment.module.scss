@@ -7,11 +7,14 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  
   transition: box-shadow 0.2s ease-out;
+  transform: translateY(1000px);
+  animation: appearFromTheButtom 1s forwards;
 }
 
 .ItemApartment:hover {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
 .Image {
@@ -105,6 +108,17 @@ h3 {
   margin: 10px 0 25px 0;
 
   text-align: center;
+
+  a {
+    text-decoration: none;
+    color: black;
+
+    transition: color 0.2s;
+
+    &:hover, &:focus {
+      color: crimson;
+    }
+  }
 }
 
 .Description {
@@ -134,3 +148,13 @@ h3 {
 }
 
 
+@keyframes appearFromTheButtom {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

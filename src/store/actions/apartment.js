@@ -1,7 +1,7 @@
 import {ActionType} from './actionTypes';
 import axios from '../../axios-apartments';
 
-export const fetchOApartmentsStart = () => {
+export const fetchApartmentsStart = () => {
   return {
     type: ActionType.FETCH_APARTMENTS_START,
   };
@@ -23,7 +23,7 @@ export const fetchApartmentsFail = (error) => {
 
 export const fetchApartments = () => {
   return dispatch => {
-    dispatch(fetchOApartmentsStart());
+    dispatch(fetchApartmentsStart());
     axios.get('/apartments.json')
       .then((response) => {
         // const fetchedOrders = [];
@@ -38,9 +38,8 @@ export const fetchApartments = () => {
           return {
             ...item,
             isFavorite: JSON.parse(localStorage.getItem('favorite@' + item.id)),
-          }
+          };
         });
-
         dispatch(fetchApartmentsSuccess(data));
       })
       .catch((error) =>{
@@ -50,24 +49,15 @@ export const fetchApartments = () => {
 };
 
 export const updateApartment = (updatedApartment) => {
-  console.log(`UPDATE AP`);
+  console.log(updatedApartment);
   return {
     type: ActionType.UPDATE_APARTMENT,
     payload: updatedApartment,
-  }
+  };
 };
 
 export const increaseApartmentCount = () => {
   return {
     type: ActionType.INCREASE_APARTMENT_COUNT,
-  };
-};
-
-export const addApartmentToFavorite = (apartment, isFavorite) => {
-  console.log(`ADD FAV`);
-  return {
-    type: ActionType.ADD_APARTMENT_TO_FAVORITE,
-    apartment: apartment,
-    payload: isFavorite,
   };
 };

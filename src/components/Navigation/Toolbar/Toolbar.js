@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './Toolbar.module.css';
+import classes from './Toolbar.module.scss';
 
 import WrapperLayout from '../../../hoc/WrapperLayout';
 import NavigationItems from '../NavigationItems';

@@ -5,7 +5,6 @@ import {fetchApartments, increaseApartmentCount} from '../../store/actions/apart
 
 import classes from './BuyApartment.module.scss';
 
-
 import WrapperLayout from '../../hoc/WrapperLayout';
 import Spinner from '../../components/UI/Spinner';
 import Button from '../../components/UI/Button';
@@ -19,10 +18,6 @@ const BuyApartment = (props) => {
     }
   }, []);
 
-  const clickApartmentHandler = (id) => {
-    props.history.push(props.location.pathname + '/' + id);
-  };
-
   const clickMoreApartmentsHandler = () => {
     props.increaseApartmentCount();
   };
@@ -32,7 +27,7 @@ const BuyApartment = (props) => {
   }
 
   let moreApartmentsButton;
-  if (props.apartments.length >= props.count) {
+  if (props.apartments.length >= props.apartmentCount) {
     moreApartmentsButton = (
       <Button clicked={clickMoreApartmentsHandler}>More Apartments</Button>
     );
@@ -42,7 +37,7 @@ const BuyApartment = (props) => {
     <section className={classes.BuyApartment}>
       <h2 className="visually-hidden">Buy Apartments</h2>
       <WrapperLayout>
-        <ListApartment apartments={props.apartments.slice(0, props.count)} clicked={clickApartmentHandler} />
+        <ListApartment apartments={props.apartments.slice(0, props.apartmentCount)} />
 
         {moreApartmentsButton}
       </WrapperLayout>
@@ -55,7 +50,7 @@ const mapStateToProps = (state) => {
     apartments: state.apartments,
     loading: state.loading,
     error: state.error,
-    count: state.count,
+    apartmentCount: state.count,
   };
 };
 

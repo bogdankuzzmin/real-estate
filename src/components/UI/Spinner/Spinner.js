@@ -1,10 +1,10 @@
 import React from 'react';
 
-import classes from './Spinner.module.scss';
+import {ReactComponent as SpinnerSvg} from '../../../assets/spinner.svg';
 
 const spinner = () => {
   return (
-    <div className={classes.Loader}>Loading...</div>
+    <SpinnerSvg width="220" height="220" />
   );
 };
 

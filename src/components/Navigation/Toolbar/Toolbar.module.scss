@@ -1,5 +1,9 @@
+@import '../../../scss//palette';
+
 .Toolbar {
   display: flex;
+
+  border-bottom: 3px solid $border-tollbar;
 }
 
 .Nav {
@@ -9,6 +13,5 @@
   justify-content: space-between;
   width: 100%;
   min-height: 70px;
-
 }
 
