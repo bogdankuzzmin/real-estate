@@ -10,7 +10,6 @@ import Spinner from '../../components/UI/Spinner';
 import Button from '../../components/UI/Button';
 import ListApartment from '../../components/ListApartments';
 
-
 const BuyApartment = (props) => {
   useEffect(() => {
     if (props.apartments.length === 0) {

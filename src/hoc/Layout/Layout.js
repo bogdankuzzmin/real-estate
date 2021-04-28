@@ -12,7 +12,7 @@ const layout = props => {
         {props.children}
       </main>
       <footer className={classes.Footer}>
-        <p>It will be the best SPA I've ever built!</p>
+        <p>Footer</p>
       </footer>
     </Fragment>
   );

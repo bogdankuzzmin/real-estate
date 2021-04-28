@@ -19,7 +19,7 @@ const store = createStore(apartmentStore, composeEnhancers(
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename="/projects/real-estate/">
       <App />
     </BrowserRouter>
   </Provider>,
