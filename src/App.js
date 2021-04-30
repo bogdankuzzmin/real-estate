@@ -5,7 +5,13 @@ import './App.css';
 
 import Layout from './hoc/Layout';
 import MainPage from './containers/MainPage';
+import SellApartment from './containers/SellApartment';
+import Services from './containers/Services';
+import Contacts from './containers/Contacts';
+import Auth from './containers/Auth';
+import PageNotFound from './components/PageNotFound';
 import BuyApartment from './containers/BuyApartment';
+import RentApartment from './containers/RentApartment';
 import ApartmentDetails from './components/ApartmentDetails/ApartmentDetails';
 
 const App = props => {
@@ -21,13 +27,13 @@ const App = props => {
 
                  return <ApartmentDetails apartmentId={id} />;
                }} />
-        <Route path="/sell" render={() => (<p>Sell</p>)} />
-        <Route path="/rent" render={() => (<p>Rent</p>)} />
-        <Route path="/services" render={() => (<p>Services</p>)} />
-        <Route path="/contacts" render={() => (<p>Contacts</p>)} />
-        <Route path="/sign-in" render={() => (<p>Sign in</p>)} />
+        <Route path="/sell" component={SellApartment} />
+        <Route path="/rent" component={RentApartment} />
+        <Route path="/services" component={Services} />
+        <Route path="/contacts" component={Contacts} />
+        <Route path="/sign-in" component={Auth} />
 
-        <Route render={() => (<p>Page was not found</p>)} />
+        <Route component={PageNotFound} />
       </Switch>
     </Layout>
   );
