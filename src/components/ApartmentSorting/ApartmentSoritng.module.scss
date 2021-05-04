@@ -1,0 +1,21 @@
+.Sorting {
+  display: flex;
+
+  font-weight: 700;
+
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  background-color: rgba(59, 155, 227, 0.72);
+
+  label {
+    margin-right: 10px;
+  }
+
+  select {
+    padding: 10px 15px;
+  }
+}
+
+.SortWrapper {
+  margin-left: auto;
+}
