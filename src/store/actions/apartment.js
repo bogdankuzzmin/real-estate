@@ -1,5 +1,7 @@
-import {ActionType} from './actionTypes';
 import axios from '../../axios-apartments';
+import {ActionType} from './actionTypes';
+import {SortType} from "../../constants/constants";
+import sort from '../../utils/sortApartments';
 
 export const fetchApartmentsStart = () => {
   return {
@@ -40,7 +42,8 @@ export const fetchApartments = () => {
             isFavorite: JSON.parse(localStorage.getItem('favorite@' + item.id)),
           };
         });
-        dispatch(fetchApartmentsSuccess(data));
+
+        dispatch(fetchApartmentsSuccess(sort(data, SortType.NEWEST)));
       })
       .catch((error) =>{
         dispatch(fetchApartmentsFail(error));
@@ -49,7 +52,6 @@ export const fetchApartments = () => {
 };
 
 export const updateApartment = (updatedApartment) => {
-  console.log(updatedApartment);
   return {
     type: ActionType.UPDATE_APARTMENT,
     payload: updatedApartment,
@@ -59,5 +61,12 @@ export const updateApartment = (updatedApartment) => {
 export const increaseApartmentCount = () => {
   return {
     type: ActionType.INCREASE_APARTMENT_COUNT,
+  };
+};
+
+export const sortApartments = (sortType) => {
+  return {
+    type: ActionType.SORT_APARTMENTS,
+    payload: sortType,
   };
 };

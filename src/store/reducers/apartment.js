@@ -1,6 +1,10 @@
+import mockData from '../../mocs/apartments';
+
 import {updateObject} from '../../utils/common';
 import {ActionType} from '../actions/actionTypes';
-import mockData from '../../mocs/apartments';
+import {SortType} from "../../constants/constants";
+import {APARTMENT_COUNT_PER_STEP} from '../../constants/constants';
+import sort from "../../utils/sortApartments";
 
 const data = new Array(20).fill().map(mockData).map((item, index) => {
   return {
@@ -9,13 +13,12 @@ const data = new Array(20).fill().map(mockData).map((item, index) => {
   };
 });
 
-const APARTMENT_COUNT_PER_STEP = 6;
-
 const initialState = {
   apartments: [],
   loading: false,
   error: null,
   count: APARTMENT_COUNT_PER_STEP,
+  sortType: SortType.NEWEST,
 };
 
 const fetchApartmentsStart = (state) => {
@@ -38,7 +41,7 @@ const fetchApartmentsFail = (state, action) => {
   });
 };
 
-const increaseApartmentCount = (state, action) => {
+const increaseApartmentCount = (state) => {
   return updateObject(state, {
     count: state.count + APARTMENT_COUNT_PER_STEP,
   });
@@ -60,6 +63,10 @@ const updateApartment = (state, action) => {
   return updateObject(state, {apartments: newApartments});
 };
 
+const sortApartments = (state, action) => {
+  return updateObject(state, {apartments: sort(state.apartments, action.payload), sortType: action.payload});
+};
+
 
 const apartment = (state = initialState, action) => {
   switch (action.type) {
@@ -68,6 +75,7 @@ const apartment = (state = initialState, action) => {
     case ActionType.FETCH_APARTMENTS_FAIL: return fetchApartmentsFail(state, action);
     case ActionType.INCREASE_APARTMENT_COUNT: return increaseApartmentCount(state, action);
     case ActionType.UPDATE_APARTMENT: return updateApartment(state, action);
+    case ActionType.SORT_APARTMENTS: return sortApartments(state, action);
     default: return state;
   }
 };
