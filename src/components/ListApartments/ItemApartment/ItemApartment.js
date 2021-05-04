@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import moment from 'moment';
 
@@ -9,7 +9,7 @@ import FavoriteButton from '../../UI/Button/FavoriteButton';
 const NAVIGATION_PHOTOS_COUNT = 3;
 
 const ItemApartment = (props) => {
-  const {id, title, street, type, price, date, rooms, square, photos, isFavorite} = props.apartment;
+  const {id, title, street, type, price, date, rooms, square, photos} = props.apartment;
 
   const [imageURL, setImageURL] = useState(photos[0]);
   const [imageMorePhotosClass, setImageMorePhotosClass] = useState([classes.ImageMorePhotos]);
@@ -21,7 +21,7 @@ const ItemApartment = (props) => {
       <div className={classes.NavigationColumn}
            key={index}
            data-photo-index={index}>
-        <span></span>
+        <span>decorative lines</span>
       </div>
     );
   });
@@ -53,10 +53,10 @@ const ItemApartment = (props) => {
 
     setImageURL(photo);
   };
-  console.log(id + ' ' + props.animationDelay);
+
   return (
     <li className={classes.ItemApartment} style={{animationDelay: props.animationDelay}}>
-      <FavoriteButton apartment={props.apartment} isFavorite={isFavorite} />
+      <FavoriteButton apartment={props.apartment} />
 
       <div className={classes.Image}>
         <Link to={`/buy/${id}`}>

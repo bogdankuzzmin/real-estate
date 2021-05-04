@@ -1,5 +1,4 @@
-import React from 'react';
-import classes from './WrapperLayout.module.css';
+import classes from './WrapperLayout.module.scss';
 
 const wrapperLayout = (props) => {
   return (

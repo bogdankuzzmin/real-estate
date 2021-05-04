@@ -7,7 +7,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  
+
   transition: box-shadow 0.2s ease-out;
   transform: translateY(1000px);
   animation: appearFromTheButtom 1s forwards;
@@ -66,6 +66,8 @@
   height: 3px;
   width: 100%;
   background-color: rgba(225, 227, 236, 0.5);
+
+  font-size: 0;
 }
 
 .NavigationColumn span:not(:last-of-type) {

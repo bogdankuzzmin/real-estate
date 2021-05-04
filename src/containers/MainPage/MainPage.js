@@ -1,10 +1,8 @@
-import React from 'react';
-
-import classes from './MainPage.module.css';
+import classes from './MainPage.module.scss';
 
 import WrapperLayout from '../../hoc/WrapperLayout';
 
-const mainPage = (props) => {
+const mainPage = props => {
   return (
     <section className={classes.MainPage}>
       <h2 className="visually-hidden">Real Estate Agency</h2>

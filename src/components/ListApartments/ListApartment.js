@@ -1,7 +1,8 @@
-import React from 'react';
 import {connect} from 'react-redux';
 
-import classes from './ListApartment.module.css';
+import classes from './ListApartment.module.scss';
+
+import {APARTMENT_COUNT_PER_STEP} from "../../constants/constants";
 
 import ItemApartment from './ItemApartment';
 
@@ -11,19 +12,19 @@ const listApartment = (props) => {
   if (apartments === null) {
     return <p>There are no any apartments</p>;
   }
-  console.log(props.apartmentCount);
+
   let animationDelay = 0;
   const apartment = apartments.map((apartment, index) => {
     animationDelay++;
 
-    if (index % 6 === 0) {
-      animationDelay = 1;
+    if (index % APARTMENT_COUNT_PER_STEP === 0) {
+      animationDelay = 0;
     }
 
-    return <ItemApartment 
-              key={apartment.id} 
-              apartment={apartment} 
-              clickFavoriteHandler={props.clickFavoriteHandler} 
+    return <ItemApartment
+              key={apartment.id}
+              apartment={apartment}
+              clickFavoriteHandler={props.clickFavoriteHandler}
               animationDelay={`0.${animationDelay}s`} />
   });
 

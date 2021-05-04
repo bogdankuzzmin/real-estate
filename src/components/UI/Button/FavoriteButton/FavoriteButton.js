@@ -6,16 +6,15 @@ import {ReactComponent as HeartIcon} from '../../../../assets/icons/filled-heart
 
 import {updateApartment} from '../../../../store/actions/apartment';
 
-const favoriteButton = (props) => {
+const favoriteButton = props => {
+  const {apartment} = props;
   const favoriteButtonClass = [classes.FavoriteButton];
 
-  if (props.isFavorite) {
+  if (apartment.isFavorite) {
     favoriteButtonClass.push(classes.FavoriteButtonActive);
   }
 
   const clickFavoriteButtonHandler = (apartment) => {
-    console.log(`add to favorite`);
-    console.log(apartment);
     localStorage.setItem('favorite@' + apartment.id, !apartment.isFavorite);
 
     const updatedApartment = {
@@ -27,7 +26,7 @@ const favoriteButton = (props) => {
   };
 
   return (
-    <button onClick={() => clickFavoriteButtonHandler(props.apartment)} className={favoriteButtonClass.join(' ')}>
+    <button onClick={() => clickFavoriteButtonHandler(apartment)} className={favoriteButtonClass.join(' ')}>
       <HeartIcon width="30" height="28"/>
     </button>
   );
