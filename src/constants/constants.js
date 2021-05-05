@@ -1,4 +1,4 @@
-export const APARTMENT_COUNT_PER_STEP = 10;
+export const APARTMENT_COUNT_PER_STEP = 6;
 
 export const SortType = {
   PRICE_UP: 'price-up',

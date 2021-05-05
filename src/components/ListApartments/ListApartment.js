@@ -6,7 +6,7 @@ import {APARTMENT_COUNT_PER_STEP} from "../../constants/constants";
 
 import ItemApartment from './ItemApartment';
 
-const listApartment = (props) => {
+const listApartment = props => {
   const {apartments} = props;
 
   if (apartments === null) {

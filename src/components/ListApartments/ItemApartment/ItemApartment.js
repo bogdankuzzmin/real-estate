@@ -26,18 +26,6 @@ const ItemApartment = (props) => {
     );
   });
 
-  // if (photosLength <= NAVIGATION_PHOTOS_COUNT) {
-  //   photo = photos.map((photo, index) => {
-  //     return (
-  //       <div className={classes.NavigationColumn}
-  //             key={index}
-  //             data-photo-index={index}>
-  //         <span></span>
-  //       </div>
-  //     );
-  //   })
-  // }
-
   const mouseOverImageNavigationHandler = (event) => {
     const photoIndex = Number(event.target.dataset.photoIndex);
     const photo = photos[photoIndex];

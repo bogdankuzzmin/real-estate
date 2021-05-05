@@ -36,7 +36,7 @@ const ApartmentDetails = (props) => {
   }
 
   const apartment = props.apartments.find(apartment => apartment.id === Number(props.apartmentId));
-  
+
   if (!apartment) {
     return <p>It seems that apartment was deleted.</p>;
   }
@@ -52,6 +52,7 @@ const ApartmentDetails = (props) => {
   return (
     <section className={classes.ApartmentDetails}>
       <h2 className="visually-hidden">Apartment</h2>
+
       <WrapperLayout>
         <div className={classes.Columns}>
           <FavoriteButton apartment={apartment} isFavorite={isFavorite} />
