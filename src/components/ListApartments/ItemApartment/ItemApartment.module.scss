@@ -9,8 +9,8 @@
   border-bottom-right-radius: 10px;
 
   transition: box-shadow 0.2s ease-out;
-  transform: translateY(1000px);
-  animation: appearFromTheButtom 1s forwards;
+  animation: fadedAnimation 1s forwards;
+  opacity: 0;
 }
 
 .ItemApartment:hover {
@@ -123,10 +123,6 @@ h3 {
   }
 }
 
-.Description {
-
-}
-
 .Description__row {
   display: flex;
   flex-wrap: wrap;
@@ -150,13 +146,12 @@ h3 {
 }
 
 
-@keyframes appearFromTheButtom {
+@keyframes fadedAnimation {
   from {
     opacity: 0;
   }
 
   to {
-    transform: translateY(0);
     opacity: 1;
   }
 }
