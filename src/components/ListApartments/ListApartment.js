@@ -9,7 +9,7 @@ import ItemApartment from './ItemApartment';
 const listApartment = props => {
   const {apartments} = props;
 
-  if (apartments === null) {
+  if (apartments === null || apartments.length === 0) {
     return <p>There are no any apartments</p>;
   }
 
@@ -24,7 +24,6 @@ const listApartment = props => {
     return <ItemApartment
               key={apartment.id}
               apartment={apartment}
-              clickFavoriteHandler={props.clickFavoriteHandler}
               animationDelay={`0.${animationDelay}s`} />
   });
 

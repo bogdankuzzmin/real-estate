@@ -10,6 +10,7 @@ const NAVIGATION_PHOTOS_COUNT = 3;
 
 const ItemApartment = (props) => {
   const {id, title, street, type, price, date, rooms, square, photos} = props.apartment;
+  // console.log(props);
 
   const [imageURL, setImageURL] = useState(photos[0]);
   const [imageMorePhotosClass, setImageMorePhotosClass] = useState([classes.ImageMorePhotos]);
