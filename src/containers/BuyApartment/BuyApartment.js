@@ -10,15 +10,14 @@ import WrapperLayout from '../../hoc/WrapperLayout';
 import Spinner from '../../components/UI/Spinner';
 import Button from '../../components/UI/Button';
 import ListApartment from '../../components/ListApartments';
-import ApartmentSorting from "../../components/ApartmentSorting";
+import ApartmentControls from '../../components/ApartmentControls';
 
 const BuyApartment = (props) => {
   useEffect(() => {
     if (props.apartments.length === 0) {
       props.fetchApartments();
     }
-
-  }, [props.fetchApartments, props.apartments, props.sortType]);
+  }, [props.fetchApartments]);
 
   const clickMoreApartmentsHandler = () => {
     props.increaseApartmentCount();
@@ -30,7 +29,7 @@ const BuyApartment = (props) => {
 
   let moreApartmentsButton = props.apartments.length > props.apartmentCount &&
                              <Button clicked={clickMoreApartmentsHandler}
-                                     buttonType="MoreApartmentsButton">
+                                     className={classes.MoreApartmentsButton}>
                                More Apartments
                              </Button>
 
@@ -40,7 +39,7 @@ const BuyApartment = (props) => {
       <h2 className="visually-hidden">Buy Apartments</h2>
 
       <WrapperLayout>
-        <ApartmentSorting />
+        <ApartmentControls />
         <ListApartment apartments={props.apartments.slice(0, props.apartmentCount)} />
 
         {moreApartmentsButton}
@@ -56,6 +55,7 @@ const mapStateToProps = (state) => {
     error: state.error,
     apartmentCount: state.count,
     sortType: state.sortType,
+    filterType: state.filterType,
   };
 };
 

@@ -1,11 +1,8 @@
 import classes from './Button.module.scss';
 
 const button = props => {
-  const buttonClass = [classes.Button, classes[props.buttonType]];
-
-  if (props.type === 'moreApartmentsButton') {
-    buttonClass.push(classes.MoreApartmentsButton);
-  }
+  console.log(props);
+  const buttonClass = [classes.Button, props.className];
 
   return (
     <button
