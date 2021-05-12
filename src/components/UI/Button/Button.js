@@ -1,7 +1,6 @@
 import classes from './Button.module.scss';
 
 const button = props => {
-  console.log(props);
   const buttonClass = [classes.Button, props.className];
 
   return (

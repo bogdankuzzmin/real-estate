@@ -6,11 +6,11 @@ import {filterApartments, sortApartments} from "../../store/actions/apartment";
 import {priceValue} from "../../constants/constants";
 
 const ApartmentFilter = props => {
-  const [filter, setFilter] = useState({
-    type: 'any',
-    rooms: 'any',
-    price: 'any',
-  });
+  // const [filter, setFilter] = useState({
+  //   type: 'any',
+  //   rooms: 'any',
+  //   price: 'any',
+  // });
 
   const dispatch = useDispatch();
 
@@ -60,7 +60,7 @@ const ApartmentFilter = props => {
 
     sortT('newest');
   };
-  console.log(currentFilter);
+
   return (
     <form className={classes.Form} onChange={(event) => changeFilterHandler(event)}>
       <label htmlFor="type">Type:</label>

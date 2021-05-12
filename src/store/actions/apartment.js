@@ -1,7 +1,6 @@
 import axios from '../../axios-apartments';
+
 import {ActionType} from './actionTypes';
-import {SortType} from "../../constants/constants";
-import sort from '../../utils/sortApartments';
 
 export const fetchApartmentsStart = () => {
   return {
@@ -28,23 +27,15 @@ export const fetchApartments = () => {
     dispatch(fetchApartmentsStart());
     axios.get('/apartments.json')
       .then((response) => {
-        // const fetchedOrders = [];
-        // for (let key in response.data) {
-        //   fetchedOrders.push({
-        //     ...response.data[key],
-        //     id: key,
-        //   });
-        // }
 
         const data = response.data.map(item => {
           return {
             ...item,
             isFavorite: JSON.parse(localStorage.getItem('favorite@' + item.id)),
-            rooms: item.rooms.toString(),
           };
         });
 
-        dispatch(fetchApartmentsSuccess(sort(data, SortType.NEWEST)));
+        dispatch(fetchApartmentsSuccess(data));
       })
       .catch((error) =>{
         dispatch(fetchApartmentsFail(error));

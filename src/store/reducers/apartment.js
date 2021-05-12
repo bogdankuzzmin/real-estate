@@ -1,21 +1,22 @@
 import mockData from '../../mocs/apartments';
 
-import {updateObject} from '../../utils/common';
 import {ActionType} from '../actions/actionTypes';
 import {APARTMENT_COUNT_PER_STEP, SortType} from '../../constants/constants';
-import sort from "../../utils/sortApartments";
-import filter from "../../utils/filterApartments";
 
-const data = new Array(20).fill().map(mockData).map((item, index) => {
-  return {
-    ...item,
-    id: index,
-  };
-});
+import {updateObject} from '../../utils/common';
+import sortApartmentsUtil from "../../utils/sortApartments";
+import filterApartmentsUtil from "../../utils/filterApartments";
+
+// const data = new Array(20).fill().map(mockData).map((item, index) => {
+//   return {
+//     ...item,
+//     id: index,
+//   };
+// });
 
 const initialState = {
   apartments: [],
-  apartmentsTwo: [],
+  copiedApartments: [],
   loading: false,
   error: null,
   count: APARTMENT_COUNT_PER_STEP,
@@ -33,8 +34,8 @@ const fetchApartmentsStart = (state) => {
 
 const fetchApartmentsSuccess = (state, action) => {
   return updateObject(state, {
-    apartments: action.payload,
-    apartmentsTwo: action.payload,
+    apartments: sortApartmentsUtil(action.payload, SortType.NEWEST),
+    copiedApartments: action.payload,
     loading: false,
   });
 };
@@ -43,7 +44,7 @@ const fetchApartmentsFail = (state, action) => {
   return updateObject(state, {
     loading: false,
     error: action.payload.message,
-    // apartments: data, used mock data when the internet is not available
+    // apartments: data,   // used mock data when the internet is not available
   });
 };
 
@@ -70,21 +71,24 @@ const updateApartment = (state, action) => {
 };
 
 const sortApartments = (state, action) => {
-  return updateObject(state, {apartments: sort(state.apartments, action.payload), sortType: action.payload});
+  return updateObject(state, {
+    apartments: sortApartmentsUtil(state.apartments, action.payload),
+    sortType: action.payload
+  });
 };
 
 const filterApartments = (state, action) => {
-  const filteredApartments = state.apartmentsTwo.filter((it) => {
-    return filter(action.payload, it);
+  const filteredApartments = state.copiedApartments.filter((apartment) => {
+    return filterApartmentsUtil(action.payload, apartment);
   });
+
+  console.log(filteredApartments);
 
   return updateObject(state, {
     apartments: filteredApartments,
     currentFilter: action.payload,
-
   });
 };
-
 
 const apartment = (state = initialState, action) => {
   switch (action.type) {

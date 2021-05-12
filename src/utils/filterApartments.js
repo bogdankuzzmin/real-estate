@@ -4,28 +4,30 @@ const filterByType = (filterType, apartment) => {
   return filterType !== 'any' ? apartment.type === filterType : apartment;
 };
 
-const filterByRooms = (filterType, apartment) => {
-  switch (filterType) {
+const filterByRooms = (filterRooms, apartment) => {
+  const roomsValueToNumber = +filterRooms;
+
+  switch (filterRooms) {
     case 'any':
       return apartment;
     case '4-more':
-      return apartment.rooms >= '4';
+      return apartment.rooms >= 4;
 
     default:
-      return apartment.rooms === filterType;
+      return apartment.rooms === roomsValueToNumber;
   }
 
   // return filterType !== 'any' ? apartment.rooms === filterType : apartment;
 };
 
-const filterByPrice = (filterType, apartment) => {
-  return apartment.price >= priceValue[filterType].min && apartment.price < priceValue[filterType].max;
+const filterByPrice = (filterPrice, apartment) => {
+  return apartment.price >= priceValue[filterPrice].min && apartment.price < priceValue[filterPrice].max;
 };
 
-const filter = (filterType, apartment) => {
+const filterApartmentsUtil = (filterType, apartment) => {
   return filterByType(filterType.type, apartment) &&
          filterByRooms(filterType.rooms, apartment) &&
          filterByPrice(filterType.price, apartment);
 };
 
-export default filter;
+export default filterApartmentsUtil;

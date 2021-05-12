@@ -2,7 +2,7 @@ import moment from "moment";
 
 import {SortType} from "../constants/constants";
 
-const sort = (apartments, sortType) => {
+const sortApartmentsUtil = (apartments, sortType) => {
   switch (sortType) {
     case SortType.PRICE_UP:
       return apartments.sort((a, b) =>  b.price - a.price);
@@ -24,4 +24,4 @@ const sort = (apartments, sortType) => {
   }
 };
 
-export default sort;
+export default sortApartmentsUtil;
