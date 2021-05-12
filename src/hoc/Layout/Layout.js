@@ -3,6 +3,7 @@ import {Fragment} from 'react';
 import classes from './Layout.module.scss';
 
 import Toolbar from '../../components/Navigation/Toolbar';
+import Footer from '../../components/Footer';
 
 const layout = props => {
   return (
@@ -11,9 +12,7 @@ const layout = props => {
       <main className={classes.Main}>
         {props.children}
       </main>
-      <footer className={classes.Footer}>
-        <p>Footer</p>
-      </footer>
+      <Footer />
     </Fragment>
   );
 };
