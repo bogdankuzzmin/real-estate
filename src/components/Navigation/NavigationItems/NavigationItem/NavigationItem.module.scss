@@ -1,4 +1,4 @@
-@import 'src/scss/palette';
+@import '../../../../scss/variables';
 
 .NavigationItem {
   margin-right: 20px;
@@ -27,7 +27,7 @@
   &:hover,
   &:focus {
     color: $hover-link-color;
-    
+
     cursor: default;
   }
 }

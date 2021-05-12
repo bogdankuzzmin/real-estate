@@ -6,3 +6,10 @@ $weight-semibold: 600;
 $weight-bold: 700;
 $weight-extrabold: 800;
 $weight-boldest: 900;
+
+
+$main-link-color: #000000;
+$hover-link-color: #dc143c;
+$active-link-color: darken($hover-link-color, 15%);
+
+$border-tollbar: #dc143c;
