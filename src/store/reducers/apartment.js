@@ -2,9 +2,9 @@ import mockData from '../../mocs/apartments';
 
 import {updateObject} from '../../utils/common';
 import {ActionType} from '../actions/actionTypes';
-import {SortType} from "../../constants/constants";
-import {APARTMENT_COUNT_PER_STEP} from '../../constants/constants';
+import {APARTMENT_COUNT_PER_STEP, SortType} from '../../constants/constants';
 import sort from "../../utils/sortApartments";
+import filter from "../../utils/filterApartments";
 
 const data = new Array(20).fill().map(mockData).map((item, index) => {
   return {
@@ -15,10 +15,16 @@ const data = new Array(20).fill().map(mockData).map((item, index) => {
 
 const initialState = {
   apartments: [],
+  apartmentsTwo: [],
   loading: false,
   error: null,
   count: APARTMENT_COUNT_PER_STEP,
   sortType: SortType.NEWEST,
+  currentFilter: {
+    type: 'any',
+    rooms: 'any',
+    price: 'any',
+  },
 };
 
 const fetchApartmentsStart = (state) => {
@@ -28,16 +34,16 @@ const fetchApartmentsStart = (state) => {
 const fetchApartmentsSuccess = (state, action) => {
   return updateObject(state, {
     apartments: action.payload,
+    apartmentsTwo: action.payload,
     loading: false,
   });
 };
 
 const fetchApartmentsFail = (state, action) => {
-  console.log(data);
   return updateObject(state, {
     loading: false,
     error: action.payload.message,
-    apartments: data,
+    // apartments: data, used mock data when the internet is not available
   });
 };
 
@@ -67,6 +73,18 @@ const sortApartments = (state, action) => {
   return updateObject(state, {apartments: sort(state.apartments, action.payload), sortType: action.payload});
 };
 
+const filterApartments = (state, action) => {
+  const filteredApartments = state.apartmentsTwo.filter((it) => {
+    return filter(action.payload, it);
+  });
+
+  return updateObject(state, {
+    apartments: filteredApartments,
+    currentFilter: action.payload,
+
+  });
+};
+
 
 const apartment = (state = initialState, action) => {
   switch (action.type) {
@@ -76,6 +94,8 @@ const apartment = (state = initialState, action) => {
     case ActionType.INCREASE_APARTMENT_COUNT: return increaseApartmentCount(state, action);
     case ActionType.UPDATE_APARTMENT: return updateApartment(state, action);
     case ActionType.SORT_APARTMENTS: return sortApartments(state, action);
+    case ActionType.FILTER_APARTMENTS: return filterApartments(state, action);
+
     default: return state;
   }
 };

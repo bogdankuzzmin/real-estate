@@ -4,6 +4,7 @@ import {sortApartments} from '../../store/actions/apartment';
 
 import classes from './ApartmentSoritng.module.scss';
 
+
 const ApartmentSorting = props => {
   const dispatch = useDispatch();
 
@@ -15,18 +16,16 @@ const ApartmentSorting = props => {
   };
 
   return (
-    <div className={classes.Sorting}>
-      <div className={classes.SortWrapper}>
-        <label htmlFor="sortingApartments">Sort: </label>
-        <select value={sortType} id="sortingApartments" onChange={(event) => changeSortTypeHandler(event)}>
-          <option value="price-up">Price (High to Low)</option>
-          <option value="price-down">Price (Low to High)</option>
-          <option value="newest">Newest</option>
-          <option value="square">Square Feet</option>
-          <option value="rooms">Rooms</option>
-        </select>
-      </div>
-    </div>
+    <form className={classes.Sorting}>
+      <label htmlFor="sortingApartments">Sort: </label>
+      <select value={sortType} id="sortingApartments" onChange={(event) => changeSortTypeHandler(event)}>
+        <option value="price-up">Price (High to Low)</option>
+        <option value="price-down">Price (Low to High)</option>
+        <option value="newest">Newest</option>
+        <option value="square">Square Feet</option>
+        <option value="rooms">Rooms</option>
+      </select>
+    </form>
   );
 };
 

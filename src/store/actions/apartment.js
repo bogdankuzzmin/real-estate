@@ -40,6 +40,7 @@ export const fetchApartments = () => {
           return {
             ...item,
             isFavorite: JSON.parse(localStorage.getItem('favorite@' + item.id)),
+            rooms: item.rooms.toString(),
           };
         });
 
@@ -68,5 +69,12 @@ export const sortApartments = (sortType) => {
   return {
     type: ActionType.SORT_APARTMENTS,
     payload: sortType,
+  };
+};
+
+export const filterApartments = (filterType) => {
+  return {
+    type: ActionType.FILTER_APARTMENTS,
+    payload: filterType,
   };
 };
