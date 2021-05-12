@@ -1,6 +1,6 @@
 import {Route, Switch} from 'react-router-dom';
 
-import './App.css';
+import './App.scss';
 
 import Layout from './hoc/Layout';
 import MainPage from './containers/MainPage';
