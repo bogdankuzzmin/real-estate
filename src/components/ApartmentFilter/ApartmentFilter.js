@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState, useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import classes from './ApartmentFilter.module.scss';
@@ -23,15 +23,24 @@ const ApartmentFilter = props => {
 
   const [filterTypes, setFilterTypes] = useState(initialFilters);
 
-  const closeFilterHandler = (event) => {
+  const closeFilterModalHandler = useCallback((event) => {
     console.log('render');
     if (!event.target.closest(`.${classes.WrapperFilter}`) || event.key === 'Escape') {
       setFilterTypes(initialFilters);
 
-      document.removeEventListener('click', closeFilterHandler);
-      document.removeEventListener("keydown", closeFilterHandler);
+      document.removeEventListener('click', closeFilterModalHandler);
+      document.removeEventListener("keydown", closeFilterModalHandler);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    for (let key in filterTypes) {
+      if (filterTypes[key]) {
+        document.addEventListener('click', closeFilterModalHandler);
+        document.addEventListener("keydown", closeFilterModalHandler);
+      }
+    }
+  }, [filterTypes, closeFilterModalHandler]);
 
   const changeFilterHandler = (event) => {
     const filterType = event.target.dataset.filterType;
@@ -63,9 +72,6 @@ const ApartmentFilter = props => {
       ...initialFilters,
       [filterType]: !filterTypes[filterType]
     });
-
-    document.addEventListener('click', closeFilterHandler);
-    document.addEventListener('keydown', closeFilterHandler);
   };
 
   const createFilterTemplate = (filterType) => {
@@ -115,7 +121,7 @@ const ApartmentFilter = props => {
           <fieldset>
             <legend>{legend}</legend>
             {inputOptions}
-            <Button type="button" className={classes.ModuleFilterButton} clicked={(event) => toggleFilter(event)} dataFilterType={filterTypeToLowerCase}>Done</Button>
+            <Button type="button" className={classes.ModalFilterButton} clicked={(event) => toggleFilter(event)} dataFilterType={filterTypeToLowerCase}>Done</Button>
           </fieldset>
         </div>
       </div>
