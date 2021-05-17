@@ -1,5 +1,92 @@
 .Form {
-  select {
-    margin-right: 15px;
+  display: flex;
+  flex-grow: 1;
+}
+
+.WrapperFilter {
+  position: relative;
+  margin-right: 15px;
+}
+
+.FilterModal {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  margin-right: 50%;
+  z-index: 200;
+
+  padding: 15px;
+  min-width: 250px;
+
+  background-color: #ffffff;
+  border: 2px solid rgba(220, 20, 60, 0.55);;
+  border-top: none;
+  visibility: hidden;
+
+  fieldset {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      margin-right: 5px;
+    }
+
+    p {
+      margin: 10px 0;
+    }
   }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 15px;
+    width: 15px;
+    height: 15px;
+    background-color: #ffffff;
+    transform: rotate(45deg);
+  }
+}
+
+.ActiveModal {
+  visibility: visible;
+}
+
+.Button {
+  min-width: 75px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  //transition: background-color 0.2s;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: #c17584;
+  }
+
+  &:active {
+    background-color: darken(#c17584, 15%);
+  }
+}
+
+.Reset {
+  background-color: #758ce3;
+
+  &:hover,
+  &:focus {
+    background-color: darken(#758ce3, 10%);
+  }
+
+  &:active {
+    background-color: darken(#758ce3, 20%);
+  }
+}
+
+.ModuleFilterButton {
+  transition: none;
+}
+
+@keyframes test {
+  from {opacity: 0}
+  to {opacity: 1}
 }

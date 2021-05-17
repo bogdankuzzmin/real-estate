@@ -1,91 +1,136 @@
-import {useEffect, useState} from "react";
+import {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import classes from './ApartmentFilter.module.scss';
-import {filterApartments, sortApartments} from "../../store/actions/apartment";
-import {priceValue} from "../../constants/constants";
+
+import {filterApartments, sortApartments, resetFilters} from "../../store/actions/apartment";
+import {typeFilters, priceValue, roomsFilter, SortType} from "../../constants/constants";
+import Button from '../../components/UI/Button';
+
+const initialFilters = {
+  type: false,
+  rooms: false,
+  price: false,
+};
 
 const ApartmentFilter = props => {
-  // const [filter, setFilter] = useState({
-  //   type: 'any',
-  //   rooms: 'any',
-  //   price: 'any',
-  // });
-
   const dispatch = useDispatch();
 
-  const filterApartmentsH = (filterType) => dispatch(filterApartments(filterType));
-  const sortT = (sortType) => dispatch(sortApartments(sortType));
+  const filterApartmentsHandler = (filterType) => dispatch(filterApartments(filterType));
+  const sortApartmentHandler = (sortType) => dispatch(sortApartments(sortType));
+  const resetFiltersHandler = () => dispatch(resetFilters());
   const currentFilter = useSelector(state => state.currentFilter);
 
-  useEffect(() => {
+  const [filterTypes, setFilterTypes] = useState(initialFilters);
 
-  }, [currentFilter]);
+  const closeFilterHandler = (event) => {
+    console.log('render');
+    if (!event.target.closest(`.${classes.WrapperFilter}`) || event.key === 'Escape') {
+      setFilterTypes(initialFilters);
 
-  const changeFilterHandler = (event) => {
-    // const filters = {
-    //   ...filterType,
-    //   [event.target.id]: event.target.value,
-    // };
-    const filteredData = {
-      ...currentFilter,
-      [event.target.id]: event.target.value,
-    };
-
-    filterApartmentsH(filteredData);
+      document.removeEventListener('click', closeFilterHandler);
+      document.removeEventListener("keydown", closeFilterHandler);
+    }
   };
 
-  // const submitHandler = (event) => {
-  //   event.preventDefault();
-  //
-  //   filterApartmentsH(filter);
-  // };
+  const changeFilterHandler = (event) => {
+    const filterType = event.target.dataset.filterType;
+    const checkedFilters = [];
 
-  const asd = Object.entries(priceValue);
-  const test = asd.map((it) => {
-    const type = it[0];
-    const minPrice = it[1].min;
-    const maxPrice = it[1].max;
-    const optionLabel = type === 'any' ? 'All prices' : `${minPrice} - ${maxPrice}`;
+    const filterInputs = Array.from(document.querySelectorAll(`input[data-filter-type=${filterType}]`));
+    filterInputs.map((input) => input.checked && checkedFilters.push(input.value));
 
-    return <option value={type} key={type}>{optionLabel}</option>;
-  });
+    const filteredData = {
+      ...currentFilter,
+      [event.target.dataset.filterType]: checkedFilters,
+    };
+
+    filterApartmentsHandler(filteredData);
+  };
 
   const resetClickHandler = () => {
-    filterApartmentsH({
-      type: 'any',
-      rooms: 'any',
-      price: 'any',
+    resetFiltersHandler();
+    setFilterTypes({...initialFilters});
+    sortApartmentHandler(SortType.NEWEST);
+  };
+
+  const toggleFilter = (event) => {
+    event.preventDefault();
+
+    const filterType = event.target.dataset.filterType;
+
+    setFilterTypes({
+      ...initialFilters,
+      [filterType]: !filterTypes[filterType]
     });
 
-    sortT('newest');
+    document.addEventListener('click', closeFilterHandler);
+    document.addEventListener('keydown', closeFilterHandler);
+  };
+
+  const createFilterTemplate = (filterType) => {
+    const filterTypeToLowerCase = filterType.toLowerCase();
+    let type = [];
+    let legend = '';
+
+    switch (filterType) {
+      case 'Type':
+        type = typeFilters;
+        legend = 'Home Type';
+        break;
+      case 'Rooms':
+        type = roomsFilter;
+        legend = 'Rooms Type';
+        break;
+      case 'Price':
+        legend = 'Price Type';
+
+        for (let key in priceValue) {
+          const newPrice = {
+            value: key,
+            label: `${priceValue[key].min} - ${priceValue[key].max}`
+          };
+
+          type.push(newPrice);
+        }
+        break;
+
+      default: throw new Error('Something went wrong!');
+    }
+
+    const inputOptions = type.map((it) => {
+      return (
+        <p key={it.value}>
+          <input type="checkbox" id={it.value} value={it.value} data-filter-type={filterTypeToLowerCase} defaultChecked={currentFilter[filterTypeToLowerCase].includes(it.value)}/>
+          <label htmlFor={it.value}>{it.label}</label>
+        </p>
+      );
+    });
+
+    return (
+      <div className={classes.WrapperFilter}>
+        <Button type="button" className={classes.Button} clicked={(event) => toggleFilter(event)} dataFilterType={filterTypeToLowerCase}>{filterType}</Button>
+
+        <div className={[classes.FilterModal, filterTypes[filterTypeToLowerCase] ? classes.ActiveModal : ''].join(' ')}>
+          <fieldset>
+            <legend>{legend}</legend>
+            {inputOptions}
+            <Button type="button" className={classes.ModuleFilterButton} clicked={(event) => toggleFilter(event)} dataFilterType={filterTypeToLowerCase}>Done</Button>
+          </fieldset>
+        </div>
+      </div>
+    );
   };
 
   return (
-    <form className={classes.Form} onChange={(event) => changeFilterHandler(event)}>
-      <label htmlFor="type">Type:</label>
-      <select defaultValue={currentFilter.type} id="type">
-        <option value="any">All types</option>
-        <option value="apartment">Apartment</option>
-        <option value="house">House</option>
-      </select>
+    <form className={classes.Form}
+          onChange={(event) => changeFilterHandler(event)}>
 
-      <label htmlFor="rooms">Rooms:</label>
-      <select defaultValue={currentFilter.rooms} id="rooms">
-        <option value="any">All rooms</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4-more">4+</option>
-      </select>
+      {createFilterTemplate('Type')}
+      {createFilterTemplate('Rooms')}
+      {createFilterTemplate('Price')}
 
-      <label htmlFor="price">Price:</label>
-      <select defaultValue={currentFilter.price} id="price">
-        {test}
-      </select>
-
-      <button type="reset" onClick={resetClickHandler}>Reset</button>
-
+      <Button type="reset" className={[classes.Button, classes.Reset].join(' ')} clicked={resetClickHandler}>Reset</Button>
     </form>
   );
 };
