@@ -7,12 +7,12 @@ import {updateObject} from '../../utils/common';
 import sortApartmentsUtil from "../../utils/sortApartments";
 import filterApartmentsUtil from "../../utils/filterApartments";
 
-// const data = new Array(20).fill().map(mockData).map((item, index) => {
-//   return {
-//     ...item,
-//     id: index,
-//   };
-// });
+const dummyData = new Array(20).fill().map(mockData).map((item, index) => {
+  return {
+    ...item,
+    id: index,
+  };
+});
 
 const initialState = {
   apartments: [],
@@ -22,9 +22,9 @@ const initialState = {
   count: APARTMENT_COUNT_PER_STEP,
   sortType: SortType.NEWEST,
   currentFilter: {
-    type: 'any',
-    rooms: 'any',
-    price: 'any',
+    type: [],
+    rooms: [],
+    price: [],
   },
 };
 
@@ -44,7 +44,8 @@ const fetchApartmentsFail = (state, action) => {
   return updateObject(state, {
     loading: false,
     error: action.payload.message,
-    // apartments: data,   // used mock data when the internet is not available
+    apartments: dummyData,   // used mock data when the internet is not available
+    copiedApartments: dummyData,
   });
 };
 
@@ -82,11 +83,16 @@ const filterApartments = (state, action) => {
     return filterApartmentsUtil(action.payload, apartment);
   });
 
-  console.log(filteredApartments);
-
   return updateObject(state, {
     apartments: filteredApartments,
     currentFilter: action.payload,
+  });
+};
+
+const resetFilters = (state) => {
+  return updateObject(state, {
+    currentFilter: initialState.currentFilter,
+    apartments: state.copiedApartments
   });
 };
 
@@ -99,6 +105,7 @@ const apartment = (state = initialState, action) => {
     case ActionType.UPDATE_APARTMENT: return updateApartment(state, action);
     case ActionType.SORT_APARTMENTS: return sortApartments(state, action);
     case ActionType.FILTER_APARTMENTS: return filterApartments(state, action);
+    case ActionType.RESET_FILTERS: return resetFilters(state, action);
 
     default: return state;
   }

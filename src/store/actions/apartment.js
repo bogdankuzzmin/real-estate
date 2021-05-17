@@ -69,3 +69,9 @@ export const filterApartments = (filterType) => {
     payload: filterType,
   };
 };
+
+export const resetFilters = () => {
+  return {
+    type: ActionType.RESET_FILTERS,
+  };
+};
