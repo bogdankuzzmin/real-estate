@@ -1,27 +1,37 @@
 import {priceValue} from "../constants/constants";
 
 const filterByType = (filterType, apartment) => {
-  return filterType !== 'any' ? apartment.type === filterType : apartment;
+  if (filterType.length === 0) {
+    return apartment;
+  }
+
+  return filterType.find((type) => {
+    return apartment.type === type;
+  });
 };
 
 const filterByRooms = (filterRooms, apartment) => {
-  const roomsValueToNumber = +filterRooms;
-
-  switch (filterRooms) {
-    case 'any':
-      return apartment;
-    case '4-more':
-      return apartment.rooms >= 4;
-
-    default:
-      return apartment.rooms === roomsValueToNumber;
+  if (filterRooms.length === 0) {
+    return apartment;
   }
 
-  // return filterType !== 'any' ? apartment.rooms === filterType : apartment;
+  return filterRooms.find((room) => {
+    if (room === '4-more') {
+      return apartment.rooms >= 4;
+    }
+
+    return apartment.rooms === +room;
+  });
 };
 
 const filterByPrice = (filterPrice, apartment) => {
-  return apartment.price >= priceValue[filterPrice].min && apartment.price < priceValue[filterPrice].max;
+  if (filterPrice.length === 0) {
+    return apartment;
+  }
+
+  return filterPrice.find((price) => {
+    return apartment.price >= priceValue[price].min && apartment.price < priceValue[price].max;
+  });
 };
 
 const filterApartmentsUtil = (filterType, apartment) => {
