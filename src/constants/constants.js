@@ -9,10 +9,6 @@ export const SortType = {
 };
 
 export const priceValue = {
-  'any': {
-    min: 0,
-    max: Infinity,
-  },
   'low': {
     min: 0,
     max: 100000
@@ -34,3 +30,37 @@ export const priceValue = {
     max: Infinity
   },
 };
+
+export const roomsFilter = [
+  {
+    value: '1',
+    label: '1',
+  },
+  {
+    value: '2',
+    label: '2',
+  },
+  {
+    value: '3',
+    label: '3',
+  },
+  {
+    value: '4-more',
+    label: '4+',
+  },
+];
+
+export const typeFilters = [
+  {
+    value: 'apartment',
+    label: 'Apartment',
+  },
+  {
+    value: 'house',
+    label: 'House',
+  },
+  {
+    value: 'room',
+    label: 'Room',
+  },
+];
