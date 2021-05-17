@@ -3,3 +3,9 @@
   padding: 0 15px;
   width: 1200px;
 }
+
+@media (max-width: 1200px) {
+  .WrapperLayout {
+    width: auto;
+  }
+}
