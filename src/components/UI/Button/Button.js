@@ -5,6 +5,8 @@ const button = props => {
 
   return (
     <button
+      type={props.type}
+      data-filter-type={props.dataFilterType}
       className={buttonClass.join(' ')}
       onClick={props.clicked}
       disabled={props.disabled}>
