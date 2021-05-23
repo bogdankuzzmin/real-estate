@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import classes from './FavoriteButton.module.scss';
 import {ReactComponent as HeartIcon} from '../../../../assets/icons/filled-heart.svg';
 
-import {updateApartment} from '../../../../store/actions/apartment';
+import {addApartmentToFavoriteHandler, updateApartment} from '../../../../store/actions/apartment';
 
 const favoriteButton = props => {
   const {apartment} = props;
@@ -15,14 +15,7 @@ const favoriteButton = props => {
   }
 
   const clickFavoriteButtonHandler = (apartment) => {
-    localStorage.setItem('favorite@' + apartment.id, !apartment.isFavorite);
-
-    const updatedApartment = {
-      ...apartment,
-      isFavorite: !apartment.isFavorite,
-    };
-
-    props.updateApartment(updatedApartment);
+    props.addApartmentToFavoriteHandler(apartment);
   };
 
   return (
@@ -35,6 +28,7 @@ const favoriteButton = props => {
 const mapDispatchToProps = (dispatch) => {
   return {
     updateApartment: (updatedApartment) => dispatch(updateApartment(updatedApartment)),
+    addApartmentToFavoriteHandler: (apartment) => dispatch(addApartmentToFavoriteHandler(apartment)),
   };
 };
 

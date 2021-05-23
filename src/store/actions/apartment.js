@@ -56,6 +56,27 @@ export const increaseApartmentCount = () => {
   };
 };
 
+export const addApartmentToFavorite = () => {
+  return {
+    type: ActionType.ADD_APARTMENT_TO_FAVORITE,
+  };
+};
+
+export const addApartmentToFavoriteHandler = (apartment) => {
+  return dispatch => {
+    dispatch(addApartmentToFavorite());
+
+    localStorage.setItem('favorite@' + apartment.id, !apartment.isFavorite);
+
+    const updatedApartment = {
+      ...apartment,
+      isFavorite: !apartment.isFavorite,
+    };
+
+    dispatch(updateApartment(updatedApartment));
+  };
+};
+
 export const sortApartments = (sortType) => {
   return {
     type: ActionType.SORT_APARTMENTS,
