@@ -3,11 +3,17 @@
 
   margin: 0;
   padding: 15px 0;
-  min-width: 300px;
+  min-width: 250px;
 
   list-style: none;
 }
 
 .MarginRight {
   justify-content: flex-end;
+}
+
+@media (max-width: 767px) {
+  .NavigationItems {
+    display: none;
+  }
 }

@@ -2,10 +2,6 @@
   margin-top: 20px;
 }
 
-.Wrapper {
-  border: 1px solid crimson;
-}
-
 .Columns {
   position: relative;
 
@@ -16,7 +12,7 @@
 
 .Gallery {
   margin-right: 20px;
-  max-width: 520px;
+  width: 520px;
 }
 
 .Gallery img {
@@ -51,4 +47,28 @@
 .Description {
   line-height: 1.4;
   text-align: justify;
+}
+
+@media (max-width: 1024px) {
+  .Gallery {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 767px) {
+  .Columns {
+    flex-direction: column;
+  }
+
+  .Gallery {
+    margin-bottom: 20px;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .MainPicture {
+    img {
+      margin: 0 auto;
+    }
+  }
 }

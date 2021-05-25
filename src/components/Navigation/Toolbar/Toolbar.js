@@ -9,14 +9,15 @@ import Logo from '../../Logo';
 const MENU = ['Buy', 'Sell', 'Rent'];
 const MENU2 = ['Services', 'Contacts', 'Sign in'];
 
-const toolbar = (props) => {
+const toolbar = props => {
   return (
     <header className={classes.Toolbar}>
       <WrapperLayout>
         <nav className={classes.Nav}>
+          <button className={classes.BurgerMenu}>Menu</button>
           <NavigationItems list={MENU} />
           <Logo />
-          <NavigationItems list={MENU2} marginRight/>
+          <NavigationItems list={MENU2} marginRight />
         </nav>
       </WrapperLayout>
     </header>

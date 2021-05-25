@@ -9,10 +9,10 @@ const navigationItems = props => {
     return null;
   }
 
-  const NavigationClasses = [classes.NavigationItems];
+  const navigationClasses = [classes.NavigationItems];
 
   if (props.marginRight) {
-    NavigationClasses.push(classes.MarginRight);
+    navigationClasses.push(classes.MarginRight);
   }
 
   const list = props.list.map((item, index) => {
@@ -24,7 +24,7 @@ const navigationItems = props => {
   });
 
   return (
-    <ul className={NavigationClasses.join(' ')}>
+    <ul className={navigationClasses.join(' ')}>
       {list}
     </ul>
   );

@@ -155,3 +155,20 @@ h3 {
     opacity: 1;
   }
 }
+
+@media (max-width: 1200px) {
+  .ItemApartment {
+    width: 315px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ItemApartment {
+    width: auto;
+    max-width: 520px;
+  }
+
+  .Image {
+    justify-content: center
+  }
+}

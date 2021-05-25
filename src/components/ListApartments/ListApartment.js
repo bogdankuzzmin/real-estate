@@ -10,7 +10,7 @@ const listApartment = props => {
   const {apartments} = props;
 
   if (apartments === null || apartments.length === 0) {
-    return <p>There are no any apartments</p>;
+    return <p style={{textAlign: 'center', fontSize: '24px', fontWeight: '700'}}>There are no any apartments</p>;
   }
 
   let animationDelay = 0;

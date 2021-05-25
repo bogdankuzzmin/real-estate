@@ -55,10 +55,10 @@ const ApartmentDetails = (props) => {
 
       <WrapperLayout>
         <div className={classes.Columns}>
-          <FavoriteButton apartment={apartment} isFavorite={isFavorite} />
-
           <div className={classes.Gallery}>
             <div className={classes.MainPicture}>
+              <FavoriteButton apartment={apartment} isFavorite={isFavorite} />
+
               <Swiper
                 thumbs={{ swiper: thumbsSwiper }}
                 spaceBetween={0}
@@ -81,17 +81,17 @@ const ApartmentDetails = (props) => {
           </div>
 
           <div className={classes.ApartmentInfo}>
-            <div className={classes.ButtonsWrapper}>
-              <Button clicked={() => props.history.push('/buy' + props.location.search)}>Back</Button>
-            </div>
+            {/*<div className={classes.ButtonsWrapper}>*/}
+            {/*  <Button clicked={() => props.history.push('/buy' + props.location.search)}>Back</Button>*/}
+            {/*</div>*/}
 
-            <p>Title: {title}</p>
-            <p>Type: {type}</p>
-            <p>Price: {price}</p>
-            <p>Rooms: {rooms}</p>
-            <p>Square: {square}m<sup>2</sup></p>
-            <p>Street: {street}</p>
-            <p>Date: {moment(date).format('MMMM Do YYYY')}</p>
+            <p><b>Title:</b> {title}</p>
+            <p><b>Type:</b> {type}</p>
+            <p><b>Price:</b> {price}</p>
+            <p><b>Rooms:</b> {rooms}</p>
+            <p><b>Square:</b> {square}m<sup>2</sup></p>
+            <p><b>Street:</b> {street}</p>
+            <p><b>Date:</b> {moment(date).format('MMMM Do YYYY')}</p>
           </div>
         </div>
 
