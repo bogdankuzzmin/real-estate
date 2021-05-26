@@ -1,0 +1,75 @@
+.InputWrapper {
+  padding-left: 30px;
+}
+
+.InputCheckbox {
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.CustomCheckbox {
+  position: absolute;
+
+  margin-left: -30px;
+  width: 20px;
+  height: 20px;
+
+  font-size: 0;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px #c17584;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 5px;
+
+    display: none;
+
+    width: 10px;
+    height: 12px;
+
+    border: 2px solid black;
+    border-top: none;
+    border-right: none;
+
+    transform: rotate(-45deg);
+  }
+}
+
+.InputWrapper label:hover .CustomCheckbox,
+.CustomCheckbox:hover {
+  box-shadow: 0 0 0 2px black;
+}
+
+.InputCheckbox:checked + .CustomCheckbox {
+  background-color: #e5385c;
+
+  &:after {
+    display: block;
+  }
+  //background-image: url(../images/check.svg);
+}
+
+.InputCheckbox:focus + .CustomCheckbox {
+  box-shadow:
+          0 0 0 2px black,
+          0 0 0 2px #7ED321;
+}
+
+.InputCheckbox:disabled + .CustomCheckbox {
+  box-shadow: 0 0 0 2px #9B9B9B;
+  cursor: not-allowed;
+}
+
+.InputCheckbox:checked:disabled + .CustomCheckbox {
+  background-color: #9B9B9B;
+  cursor: not-allowed;
+}

@@ -6,6 +6,7 @@ import classes from './ApartmentFilter.module.scss';
 import {filterApartments, sortApartments, resetFilters} from "../../store/actions/apartment";
 import {typeFilters, priceValue, roomsFilter, SortType} from "../../constants/constants";
 import Button from '../../components/UI/Button';
+import Input from '../../components/UI/Input';
 
 const initialFilters = {
   type: false,
@@ -105,12 +106,13 @@ const ApartmentFilter = props => {
     }
 
     const inputOptions = type.map((it) => {
-      return (
-        <p key={it.value}>
-          <input type="checkbox" id={it.value} value={it.value} data-filter-type={filterTypeToLowerCase} defaultChecked={currentFilter[filterTypeToLowerCase].includes(it.value)}/>
-          <label htmlFor={it.value}>{it.label}</label>
-        </p>
-      );
+      return <Input key={it.label} type="checkbox" label={it.label} value={it.value} input={{
+        type: 'checkbox',
+        id: it.value,
+        value: it.value,
+        'data-filter-type': filterTypeToLowerCase,
+        defaultChecked: currentFilter[filterTypeToLowerCase].includes(it.value),
+      }} />;
     });
 
     return (
