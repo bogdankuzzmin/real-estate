@@ -15,6 +15,10 @@ const navigationItems = props => {
     navigationClasses.push(classes.MarginRight);
   }
 
+  if (props.hide) {
+    navigationClasses.push(classes.Hide);
+  }
+
   const list = props.list.map((item, index) => {
     return <NavigationItem
               key={item + index}

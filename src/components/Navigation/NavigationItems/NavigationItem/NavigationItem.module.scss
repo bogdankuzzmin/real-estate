@@ -9,8 +9,12 @@
 }
 
 .Link {
+  display: block;
+
   color: $main-link-color;
   text-decoration: none;
+
+  transition: padding 0.2s;
 
   &:hover {
     color: $hover-link-color;
@@ -29,5 +33,24 @@
     color: $hover-link-color;
 
     cursor: default;
+  }
+}
+
+@media (max-width: 767px) {
+  .NavigationItem {
+    margin-top: -2px;
+    margin-right: 0;
+
+    border: 2px solid #dc143c;
+    border-left: none;
+    border-right: none;
+
+    &:hover .Link {
+      padding-left:25px;
+    }
+  }
+
+  .Link {
+    padding: 15px;
   }
 }

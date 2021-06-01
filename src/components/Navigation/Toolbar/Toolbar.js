@@ -14,10 +14,10 @@ const toolbar = props => {
     <header className={classes.Toolbar}>
       <WrapperLayout>
         <nav className={classes.Nav}>
-          <button className={classes.BurgerMenu}>Menu</button>
-          <NavigationItems list={MENU} />
+          <button className={classes.BurgerMenu} onClick={props.drawerToggle}>Menu</button>
+          <NavigationItems list={MENU} hide />
           <Logo />
-          <NavigationItems list={MENU2} marginRight />
+          <NavigationItems list={MENU2} marginRight hide />
         </nav>
       </WrapperLayout>
     </header>

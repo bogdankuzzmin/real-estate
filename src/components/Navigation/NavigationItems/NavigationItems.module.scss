@@ -12,8 +12,17 @@
   justify-content: flex-end;
 }
 
+
+
 @media (max-width: 767px) {
   .NavigationItems {
+    flex-direction: column;
+
+    margin-top: -1px;
+    padding: 0;
+  }
+
+  .Hide {
     display: none;
   }
 }
