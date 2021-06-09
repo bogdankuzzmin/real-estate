@@ -6,7 +6,7 @@ import {sortApartments} from '../../store/actions/apartment';
 import classes from './ApartmentSoritng.module.scss';
 
 const ApartmentSorting = props => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
   const sortApartmentsHandler = (sortType) => dispatch(sortApartments(sortType));
   const sortType = useSelector(state => state.sortType);
@@ -18,7 +18,7 @@ const ApartmentSorting = props => {
   return (
     <form className={classes.Sorting}>
       <label htmlFor="sortingApartments">Sort: </label>
-      <select value={sortType} id="sortingApartments"
+      <select value={sortType} id="sortingApartments" className={classes.SelectOption} disabled={props.disabled}
               onChange={(event) => changeSortTypeHandler(event)}>
         <option value={SortType.PRICE_UP}>Price (High to Low)</option>
         <option value={SortType.PRICE_DOWN}>Price (Low to High)</option>

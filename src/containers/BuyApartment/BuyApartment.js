@@ -31,7 +31,7 @@ const BuyApartment = (props) => {
                              <Button clicked={clickMoreApartmentsHandler}
                                      className={classes.MoreApartmentsButton}>
                                More Apartments
-                             </Button>
+                             </Button>;
 
 
   return (
@@ -39,7 +39,7 @@ const BuyApartment = (props) => {
       <h2 className="visually-hidden">Buy Apartments</h2>
 
       <WrapperLayout>
-        <ApartmentControls />
+        <ApartmentControls apartments={props.apartments} />
         <ListApartment apartments={props.apartments.slice(0, props.apartmentCount)} />
 
         {moreApartmentsButton}

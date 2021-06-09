@@ -1,3 +1,7 @@
 .Sorting {
   margin-right: 15px;
 }
+
+.SelectOption:disabled {
+  cursor: not-allowed;
+}

@@ -117,13 +117,20 @@ const ApartmentFilter = props => {
 
     return (
       <div className={classes.WrapperFilter}>
-        <Button type="button" className={classes.Button} clicked={(event) => toggleFilter(event)} dataFilterType={filterTypeToLowerCase}>{filterType}</Button>
+        <Button type="button"
+                className={classes.Button}
+                clicked={(event) => toggleFilter(event)}
+                dataFilterType={filterTypeToLowerCase}
+                disabled={props.disabled}>{filterType}</Button>
 
         <div className={[classes.FilterModal, filterTypes[filterTypeToLowerCase] ? classes.ActiveModal : ''].join(' ')}>
           <fieldset>
             <legend>{legend}</legend>
             {inputOptions}
-            <Button type="button" className={classes.ModalFilterButton} clicked={(event) => toggleFilter(event)} dataFilterType={filterTypeToLowerCase}>Done</Button>
+            <Button type="button"
+                    className={classes.ModalFilterButton}
+                    clicked={(event) => toggleFilter(event)}
+                    dataFilterType={filterTypeToLowerCase}>Done</Button>
           </fieldset>
         </div>
       </div>
