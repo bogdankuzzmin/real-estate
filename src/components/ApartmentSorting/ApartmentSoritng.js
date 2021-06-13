@@ -6,7 +6,7 @@ import {sortApartments} from '../../store/actions/apartment';
 import classes from './ApartmentSoritng.module.scss';
 
 const ApartmentSorting = props => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const sortApartmentsHandler = (sortType) => dispatch(sortApartments(sortType));
   const sortType = useSelector(state => state.sortType);

@@ -103,9 +103,9 @@ const ApartmentDetails = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    apartments: state.apartments,
-    loading: state.loading,
-    error: state.error,
+    apartments: state.apartments.apartments,
+    loading: state.apartments.loading,
+    error: state.apartments.error,
   };
 };
 

@@ -56,8 +56,6 @@ const increaseApartmentCount = (state) => {
 };
 
 const updateApartment = (state, action) => {
-  console.log(action);
-  console.log(state.apartments);
   const index = state.apartments.findIndex((apartmentIndex) => apartmentIndex.id === action.payload.id);
 
   if (index === -1) {

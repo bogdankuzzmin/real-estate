@@ -50,12 +50,12 @@ const BuyApartment = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    apartments: state.apartments,
-    loading: state.loading,
-    error: state.error,
-    apartmentCount: state.count,
-    sortType: state.sortType,
-    filterType: state.filterType,
+    apartments: state.apartments.apartments,
+    loading: state.apartments.loading,
+    error: state.apartments.error,
+    apartmentCount: state.apartments.count,
+    sortType: state.apartments.sortType,
+    filterType: state.apartments.filterType,
   };
 };
 

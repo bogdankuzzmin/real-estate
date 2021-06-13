@@ -10,10 +10,16 @@ import './index.scss';
 import App from './App';
 
 import apartmentStore from './store/reducers/apartment';
+import authStore from './store/reducers/auth';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
-const store = createStore(apartmentStore, composeEnhancers(
+const rootReducer = combineReducers({
+  apartments: apartmentStore,
+  auth: authStore,
+});
+
+const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(thunk)
 ));
 

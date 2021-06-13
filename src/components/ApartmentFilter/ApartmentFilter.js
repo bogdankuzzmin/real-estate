@@ -20,7 +20,7 @@ const ApartmentFilter = props => {
   const filterApartmentsHandler = (filterType) => dispatch(filterApartments(filterType));
   const sortApartmentHandler = (sortType) => dispatch(sortApartments(sortType));
   const resetFiltersHandler = () => dispatch(resetFilters());
-  const currentFilter = useSelector(state => state.currentFilter);
+  const currentFilter = useSelector(state => state.apartments.currentFilter);
 
   const [filterTypes, setFilterTypes] = useState(initialFilters);
 
