@@ -1,5 +1,17 @@
 .InputWrapper {
+}
+
+.DisableTopMargin:first-child {
+  margin-top: 0;
+}
+
+.InputCheckboxWrapper {
   padding-left: 30px;
+}
+
+.Input {
+  padding: 10px 15px;
+  width: 100%;
 }
 
 .InputCheckbox {
