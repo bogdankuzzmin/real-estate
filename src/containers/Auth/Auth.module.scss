@@ -1,0 +1,37 @@
+.Auth {
+  margin: 20px auto;
+  width: 700px;
+
+  border: 2px solid rgba(220, 20, 60, 0.64);
+}
+
+.ButtonsContainer {
+  display: flex;
+
+  background-color: #c2c2c2;
+  border-bottom: 2px solid rgba(220, 20, 60, 0.8);
+}
+
+.TabButton {
+  padding: 20px 25px;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  font-weight: 700;
+}
+
+.ActiveTabButton {
+  background-color: rgba(220, 20, 60, 0.64);
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.InputWrapper {
+  margin-bottom: 30px;
+}
