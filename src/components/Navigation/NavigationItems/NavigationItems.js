@@ -22,9 +22,8 @@ const navigationItems = props => {
   const list = props.list.map((item, index) => {
     return <NavigationItem
               key={item + index}
-              link={`/${item}`.toLowerCase().replace(/\s/g , "-")}>
-                {item}
-           </NavigationItem>;
+              link={`/${item}`.toLowerCase().replace(/\s/g , "-")}
+              label={item} />;
   });
 
   return (
