@@ -33,7 +33,6 @@ const Auth = props => {
   const [inputData, setInputData] = useState(initialDataState);
   const [touched, setTouched] = useState(false);
 
-
   const buttonClickHandler = (event) => {
     const buttonText = event.target.innerText;
 
