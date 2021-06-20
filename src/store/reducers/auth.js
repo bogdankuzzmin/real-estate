@@ -29,10 +29,15 @@ const auth = (state = initialState, action) => {
     });
   };
 
+  const authLogout = (state) => {
+    return updateObject(state, {token: null, userId: null});
+  };
+
   switch (action.type) {
     case ActionType.AUTH_START: return authStart(state);
     case ActionType.AUTH_SUCCESS: return authSuccess(state, action);
     case ActionType.AUTH_FAIL: return authFail(state, action);
+    case ActionType.AUTH_LOGOUT: return authLogout(state, action);
 
     default: return state;
   }
