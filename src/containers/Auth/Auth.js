@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import {Redirect} from "react-router";
 
 import WrapperLayout from '../../hoc/WrapperLayout';
 import Button from '../../components/UI/Button';
@@ -26,10 +27,12 @@ const Auth = props => {
 
   const loading = useSelector(state => state.auth.loading);
   const error = useSelector(state => state.auth.error);
+  const isAuthenticated = useSelector(state => state.auth.token !== null);
 
   const [isSignIn, setIsSignIn] = useState(AuthConstant.SIGN_IN);
   const [inputData, setInputData] = useState(initialDataState);
   const [touched, setTouched] = useState(false);
+
 
   const buttonClickHandler = (event) => {
     const buttonText = event.target.innerText;
@@ -68,15 +71,14 @@ const Auth = props => {
     const signIn = isSignIn === AuthConstant.SIGN_IN;
 
     authHandler(inputData, signIn);
-    if (error) {
-      setInputData(initialDataState);
-    }
   };
 
-  let errorMessage = error && !touched && <p className={classes.ErrorMessage}>{authErrors(error)}</p>;
+  const errorMessage = error && !touched && <p className={classes.ErrorMessage}>{authErrors(error)}</p>;
+  const authRedirect = isAuthenticated && <Redirect to="/" />;
 
   return (
     <section>
+      {authRedirect}
       <h2 className="visually-hidden">Authentication</h2>
 
       <WrapperLayout>
@@ -102,6 +104,7 @@ const Auth = props => {
                                    type: 'email',
                                    placeholder: 'Email',
                                    value: inputData.email,
+                                   required: true,
                                  }}
                           />
                           <Input changed={inputChangeHandler}
@@ -109,6 +112,8 @@ const Auth = props => {
                                    type: 'password',
                                    placeholder: 'Password',
                                    value: inputData.password,
+                                   required: true,
+                                   minLength: 6,
                                  }}
                           />
                         </div>
