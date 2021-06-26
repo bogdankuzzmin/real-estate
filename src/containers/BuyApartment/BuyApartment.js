@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {Fragment, useEffect} from 'react';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 
@@ -13,25 +13,30 @@ import ListApartment from '../../components/ListApartments';
 import ApartmentControls from '../../components/ApartmentControls';
 
 const BuyApartment = (props) => {
+  const {apartments, fetchApartments} = props;
+
   useEffect(() => {
-    if (props.apartments.length === 0) {
-      props.fetchApartments();
+    if (apartments.length === 0) {
+      fetchApartments();
     }
-  }, [props.fetchApartments]);
+  }, [apartments, fetchApartments]);
 
   const clickMoreApartmentsHandler = () => {
     props.increaseApartmentCount();
   };
-
-  if (props.loading) {
-    return <Spinner />;
-  }
 
   let moreApartmentsButton = props.apartments.length > props.apartmentCount &&
                              <Button clicked={clickMoreApartmentsHandler}
                                      className={classes.MoreApartmentsButton}>
                                More Apartments
                              </Button>;
+
+  let apartmentsList = (
+    <Fragment>
+      <ListApartment apartments={props.apartments.slice(0, props.apartmentCount)} />
+      {moreApartmentsButton}
+    </Fragment>
+  );
 
 
   return (
@@ -40,9 +45,7 @@ const BuyApartment = (props) => {
 
       <WrapperLayout>
         <ApartmentControls apartments={props.apartments} />
-        <ListApartment apartments={props.apartments.slice(0, props.apartmentCount)} />
-
-        {moreApartmentsButton}
+        {props.loading ? <Spinner /> : apartmentsList}
       </WrapperLayout>
     </section>
   );
