@@ -9,7 +9,7 @@ const ApartmentSorting = props => {
   const dispatch = useDispatch();
 
   const sortApartmentsHandler = (sortType) => dispatch(sortApartments(sortType));
-  const sortType = useSelector(state => state.sortType);
+  const sortType = useSelector(state => state.apartments.sortType);
 
   const changeSortTypeHandler = (event) => {
     sortApartmentsHandler(event.target.value);
