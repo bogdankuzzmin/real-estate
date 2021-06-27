@@ -1,0 +1,49 @@
+@import '../../../../scss/variables';
+
+.DrawerToggle {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 55px;
+  height: 40px;
+
+  background-color: transparent;
+  border: none;
+
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &:hover:before,
+  &:focus:before {
+    background-color: $hover-link-color;
+    box-shadow: 0 9px 0 0 $hover-link-color, 0 18px 0 0 $hover-link-color;
+  }
+
+  &:active:before {
+    background-color: $active-link-color;
+    box-shadow: 0 9px 0 0 $active-link-color, 0 18px 0 0 $active-link-color;
+  }
+
+}
+
+.DrawerToggle:before {
+  content: '';
+  position: absolute;
+  top: 9px;
+  left: 7px;
+
+  width: 40px;
+  height: 3px;
+
+  background-color: $main-link-color;
+  box-shadow: 0 9px 0 0 $main-link-color, 0 18px 0 0 $main-link-color;
+}
+
+@media (min-width: 767px) {
+  .DrawerToggle {
+    display: none;
+  }
+}

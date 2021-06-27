@@ -4,6 +4,7 @@ import classes from './Toolbar.module.scss';
 
 import WrapperLayout from '../../../hoc/WrapperLayout';
 import NavigationItems from '../NavigationItems';
+import DrawerToggle from '../SideDrawer/DrawerToggle';
 import Logo from '../../Logo';
 
 const MENU = ['Buy', 'Sell', 'Rent'];
@@ -14,7 +15,7 @@ const toolbar = props => {
     <header className={classes.Toolbar}>
       <WrapperLayout>
         <nav className={classes.Nav}>
-          <button className={classes.BurgerMenu} onClick={props.drawerToggle}>Menu</button>
+          <DrawerToggle clicked={props.drawerToggle}/>
           <NavigationItems list={MENU} hide />
           <Logo />
           <NavigationItems list={MENU2} marginRight hide />
