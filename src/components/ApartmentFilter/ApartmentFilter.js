@@ -1,4 +1,4 @@
-import {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import classes from './ApartmentFilter.module.scss';
@@ -21,11 +21,11 @@ const ApartmentFilter = props => {
   const sortApartmentHandler = (sortType) => dispatch(sortApartments(sortType));
   const resetFiltersHandler = () => dispatch(resetFilters());
   const currentFilter = useSelector(state => state.apartments.currentFilter);
+  const currentSortType = useSelector((state => state.apartments.sortType));
 
   const [filterTypes, setFilterTypes] = useState(initialFilters);
 
   const closeFilterModalHandler = useCallback((event) => {
-    console.log('render');
     if (!event.target.closest(`.${classes.WrapperFilter}`) || event.key === 'Escape') {
       setFilterTypes(initialFilters);
 
@@ -60,8 +60,10 @@ const ApartmentFilter = props => {
 
   const resetClickHandler = () => {
     resetFiltersHandler();
-    setFilterTypes({...initialFilters});
-    sortApartmentHandler(SortType.NEWEST);
+
+    if (currentSortType !== SortType.NEWEST) {
+      sortApartmentHandler(SortType.NEWEST);
+    }
   };
 
   const toggleFilter = (event) => {
@@ -106,12 +108,12 @@ const ApartmentFilter = props => {
     }
 
     const inputOptions = type.map((it) => {
-      return <Input key={it.label} type="checkbox" label={it.label} value={it.value} input={{
+      return <Input key={it.label} type="checkbox" changed={changeFilterHandler} label={it.label} value={it.value} input={{
         type: 'checkbox',
         id: it.value,
         value: it.value,
         'data-filter-type': filterTypeToLowerCase,
-        defaultChecked: currentFilter[filterTypeToLowerCase].includes(it.value),
+        checked: currentFilter[filterTypeToLowerCase].includes(it.value) ? true : '',
       }} />;
     });
 
@@ -119,7 +121,7 @@ const ApartmentFilter = props => {
       <div className={classes.WrapperFilter}>
         <Button type="button"
                 className={classes.Button}
-                clicked={(event) => toggleFilter(event)}
+                clicked={toggleFilter}
                 dataFilterType={filterTypeToLowerCase}
                 disabled={props.disabled}>{filterType}</Button>
 
@@ -129,7 +131,7 @@ const ApartmentFilter = props => {
             {inputOptions}
             <Button type="button"
                     className={classes.ModalFilterButton}
-                    clicked={(event) => toggleFilter(event)}
+                    clicked={toggleFilter}
                     dataFilterType={filterTypeToLowerCase}>Done</Button>
           </fieldset>
         </div>
@@ -138,8 +140,7 @@ const ApartmentFilter = props => {
   };
 
   return (
-    <form className={classes.Form}
-          onChange={(event) => changeFilterHandler(event)}>
+    <form className={classes.Form} >
 
       {createFilterTemplate('Type')}
       {createFilterTemplate('Rooms')}
@@ -150,4 +151,4 @@ const ApartmentFilter = props => {
   );
 };
 
-export default ApartmentFilter;
+export default React.memo(ApartmentFilter);
