@@ -19,7 +19,7 @@ const BuyApartment = (props) => {
     if (apartments.length === 0) {
       fetchApartments();
     }
-  }, [apartments, fetchApartments]);
+  }, [fetchApartments]);
 
   const clickMoreApartmentsHandler = () => {
     props.increaseApartmentCount();

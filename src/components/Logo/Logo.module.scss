@@ -1,3 +1,5 @@
+@import '../../scss/variables';
+
 .Logo {
   padding: 0 15px;
   text-align: center;
@@ -6,12 +8,14 @@
 .Logo a {
   margin-right: -15px;
 
-  color: #000000;
+  color: $main-link-color;
   font-size: 42px;
   font-weight: 700;
   letter-spacing: 15px;
   text-decoration: none;
   text-transform: uppercase;
+
+  text-shadow: $text-shadow;
 }
 
 @media (max-width: 767px) {

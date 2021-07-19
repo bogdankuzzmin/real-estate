@@ -16,7 +16,8 @@
 
   transition: padding 0.2s;
 
-  &:hover {
+  &:hover,
+  &:focus {
     color: $hover-link-color;
   }
 
@@ -41,7 +42,7 @@
     margin-top: -2px;
     margin-right: 0;
 
-    border: 2px solid #dc143c;
+    border: 2px solid #b2d4d4;
     border-left: none;
     border-right: none;
 

@@ -1,3 +1,5 @@
+@import '../../scss/variables';
+
 .Form {
   display: flex;
   flex-grow: 1;
@@ -18,14 +20,15 @@
   padding: 15px;
   min-width: 250px;
 
-  background-color: #ffffff;
-  border: 2px solid rgba(220, 20, 60, 0.55);;
+  background-color: #afdaea;
   border-top: none;
   visibility: hidden;
+  box-shadow: $box-shadow-active;
 
   fieldset {
     display: flex;
     flex-direction: column;
+    border-color: #afdaea;
 
     input {
       margin-right: 5px;
@@ -43,7 +46,7 @@
     left: 15px;
     width: 15px;
     height: 15px;
-    background-color: #ffffff;
+    background-color: #afdaea;
     transform: rotate(45deg);
   }
 }
@@ -54,37 +57,46 @@
 
 .Button {
   min-width: 75px;
-  background-color: #ffffff;
-  border: 1px solid black;
+  //background-color: #ffffff;
+  //border: 1px solid black;
+  //color: $main-link-color;
   //transition: background-color 0.2s;
+  font-weight: $weight-normal;
   cursor: pointer;
 
   &:hover,
   &:focus {
-    background-color: #c17584;
+    background-color: $btn-hover-color;
   }
 
   &:active {
-    background-color: darken(#c17584, 15%);
+    background-color: $btn-active-color;
   }
 }
 
 .Reset {
-  background-color: #758ce3;
+  background-color: #5c78e2;
+  border-color: #5c78e2;
 
   &:hover,
   &:focus {
-    background-color: darken(#758ce3, 10%);
+    background-color: darken(#5c78e2, 10%);
+    border-color: #5c78e2;
   }
 
   &:active {
-    background-color: darken(#758ce3, 20%);
+    background-color: darken(#5c78e2, 20%);
+    border-color: #5c78e2;
   }
 }
 
 .ModalFilterButton {
   margin-top: 15px;
   transition: none;
+}
+
+.FilterButton {
+  display: none;
 }
 
 @keyframes test {
@@ -95,5 +107,9 @@
 @media (max-width: 767px) {
   .Form {
     display: none;
+  }
+
+  .FilterButton {
+    display: block;
   }
 }

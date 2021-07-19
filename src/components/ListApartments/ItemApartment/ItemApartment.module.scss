@@ -1,10 +1,12 @@
+@import '../../../scss/variables';
+
 .ItemApartment {
   position: relative;
   width: 350px;
 
-  background-color: #ffffff;
+  background-color: #c2e7f0;
 
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: $box-shadow;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 
@@ -14,7 +16,7 @@
 }
 
 .ItemApartment:hover {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  box-shadow: $box-shadow-active;
 }
 
 .Image {
@@ -113,12 +115,13 @@ h3 {
 
   a {
     text-decoration: none;
-    color: black;
+    color: #008080;
 
     transition: color 0.2s;
 
-    &:hover, &:focus {
-      color: crimson;
+    &:hover,
+    &:focus {
+      color: darken(#008080, 10%);
     }
   }
 }

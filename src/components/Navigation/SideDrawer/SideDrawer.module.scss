@@ -1,3 +1,5 @@
+@import '../../../scss/variables';
+
 .SideDrawer {
   position: fixed;
   top: 0;
@@ -9,8 +11,7 @@
   max-width: 70%;
   height: 100%;
 
-  background-color: rgba(255, 255, 255, 0.9);
-  border-right: 3px solid #dc143c;
+  background-color: rgba(0, 128, 128, 0.9);
   transition: transform 0.3s ease-out;
 
   overflow: hidden;

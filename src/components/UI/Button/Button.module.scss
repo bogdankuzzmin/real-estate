@@ -1,5 +1,4 @@
-$main-color: rgba(220, 20, 60, 0.64);
-$hover-color: darken($main-color, 20%);
+@import '../../../scss/variables';
 
 .Button {
   position: relative;
@@ -9,29 +8,32 @@ $hover-color: darken($main-color, 20%);
   padding: 10px 15px;
   min-width: 100px;
 
+  color: $btn-text-color;
   font: inherit;
   text-align: center;
 
-  background-color: $main-color;
-  border: 1px solid darken($main-color, 20%);
+  background-color: $btn-bg-color;
+  border: 1px solid $btn-bg-color;
   outline: none;
 
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 
-  &:hover {
-    border-color: navy;
-    background-color: $hover-color;
+  &:hover,
+  &:focus {
+    border-color: $btn-hover-color;
+    background-color: $btn-hover-color;
   }
 
-  &:active, &:focus {
-    border-color: navy;
-    background-color: $hover-color;
+  &:active {
+    border-color: $btn-active-color;
+    background-color: $btn-active-color;
   }
 
   &:disabled {
+    color: rgba(0, 0, 0, 0.5);
     background-color: rgba(239, 239, 239, 0.5);
-    border-color: rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 0, 0, 0.4);
     cursor: not-allowed;
   }
 

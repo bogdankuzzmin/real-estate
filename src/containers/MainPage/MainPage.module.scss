@@ -1,3 +1,5 @@
+@import '../../scss/variables';
+
 .MainPage {
   display: flex;
 
@@ -13,10 +15,11 @@
 
   width: 500px;
 
-  color: #ffffff;
+  color: $toolbar-bg-color;
   font-size: 32px;
-  font-weight: 700;
+  font-weight: $weight-bold;
   text-align: center;
+  text-shadow: 1px 1px black;
 }
 
 @media (max-width: 767px) {

@@ -4,11 +4,11 @@ import WrapperLayout from '../../hoc/WrapperLayout';
 
 const mainPage = props => {
   return (
-    <section className={classes.MainPage}>
+    <section>
       <h2 className="visually-hidden">Real Estate Agency</h2>
       <WrapperLayout>
         <p>
-          When you’re ready for a change, we’re ready to help.
+          Main page
         </p>
       </WrapperLayout>
     </section>

@@ -12,6 +12,18 @@
 .Input {
   padding: 10px 15px;
   width: 100%;
+
+  font: inherit;
+
+  background-color: #f0f0f0;
+  border: 1px solid #c1d1d1;
+
+  &:hover,
+  &:focus {
+    background-color: #cbf8f8;
+    outline: 1px solid teal;
+    border-color: teal;
+  }
 }
 
 .InputCheckbox {
@@ -19,6 +31,8 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+
+  display: none;
 }
 
 .CustomCheckbox {
@@ -34,7 +48,7 @@
   background-position: 50% 50%;
 
   border-radius: 5px;
-  box-shadow: 0 0 0 2px #c17584;
+  box-shadow: 0 0 0 2px #008080;
   overflow: hidden;
 
   &:after {
@@ -58,11 +72,11 @@
 
 .InputWrapper label:hover .CustomCheckbox,
 .CustomCheckbox:hover {
-  box-shadow: 0 0 0 2px black;
+  box-shadow: 0 0 0 2px #36b1b1;
 }
 
 .InputCheckbox:checked + .CustomCheckbox {
-  background-color: #e5385c;
+  background-color: #008080;
 
   &:after {
     display: block;

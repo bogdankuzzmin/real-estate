@@ -7,9 +7,21 @@ $weight-bold: 700;
 $weight-extrabold: 800;
 $weight-boldest: 900;
 
+$main-bg-color: #e7f8f8;
+$toolbar-bg-color: rgba(0, 128, 128, 0.9);
 
-$main-link-color: #000000;
-$hover-link-color: #dc143c;
-$active-link-color: darken($hover-link-color, 15%);
+$main-link-color: #e6fcfc;
+$hover-link-color: darken($main-link-color, 15%);
+$active-link-color: darken($main-link-color, 45%);
+
+$text-shadow: 2px 2px #000000;
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+$box-shadow-active: 0 2px 4px rgba(0, 0, 0, 0.6);
+
+$btn-text-color: #ffffff;
+$btn-bg-color: #008080;
+$btn-hover-color: #11acac;
+$btn-active-color: darken($btn-hover-color, 15%);
+
 
 $border-tollbar: #dc143c;

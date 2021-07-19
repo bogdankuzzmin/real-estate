@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {Fragment, useEffect, useState, useCallback} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 
 import classes from './ApartmentFilter.module.scss';
@@ -77,6 +77,9 @@ const ApartmentFilter = props => {
     });
   };
 
+  const clickFilterButtonHandler = () => {
+  };
+
   const createFilterTemplate = (filterType) => {
     const filterTypeToLowerCase = filterType.toLowerCase();
     let type = [];
@@ -140,14 +143,17 @@ const ApartmentFilter = props => {
   };
 
   return (
-    <form className={classes.Form} >
+    <Fragment>
+      <button onClick={clickFilterButtonHandler} className={classes.FilterButton}>FilterButton</button>
+      <form className={classes.Form}>
 
-      {createFilterTemplate('Type')}
-      {createFilterTemplate('Rooms')}
-      {createFilterTemplate('Price')}
+        {createFilterTemplate('Type')}
+        {createFilterTemplate('Rooms')}
+        {createFilterTemplate('Price')}
 
-      <Button type="reset" className={[classes.Button, classes.Reset].join(' ')} clicked={resetClickHandler}>Reset</Button>
-    </form>
+        <Button type="reset" className={[classes.Button, classes.Reset].join(' ')} clicked={resetClickHandler}>Reset</Button>
+      </form>
+    </Fragment>
   );
 };
 

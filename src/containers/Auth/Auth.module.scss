@@ -1,27 +1,46 @@
 .Auth {
   margin: 20px auto;
   width: 700px;
+  min-height: 200px;
 
-  border: 2px solid rgba(220, 20, 60, 0.64);
+
+  background-color: #c2e7f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+
+  //border: 2px solid rgba(220, 20, 60, 0.64);
 }
 
 .ButtonsContainer {
   display: flex;
-
-  background-color: #c2c2c2;
-  border-bottom: 2px solid rgba(220, 20, 60, 0.8);
 }
 
 .TabButton {
   padding: 20px 25px;
   width: 100%;
-  background-color: transparent;
-  border: none;
+
+  color: #008080;
   font-weight: 700;
+  background-color: #c2e7f0;
+  border: none;
+
+  &:first-child {
+    border-top-left-radius: 10px;
+  }
+
+  &:last-child {
+    border-top-right-radius: 10px;
+  }
+
+  &:hover,
+  &:focus {
+    color: #ffffff;
+  }
 }
 
 .ActiveTabButton {
-  background-color: rgba(220, 20, 60, 0.64);
+  color: #ffffff;
+  background-color: #008080;
 }
 
 .Form {
@@ -39,8 +58,14 @@
 .ErrorMessage {
   margin-top: 0;
 
-  color: red;
+  color: #cd1b1b;
   font-size: 20px;
   font-weight: 700;
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  .Auth {
+    width: auto;
+  }
 }
